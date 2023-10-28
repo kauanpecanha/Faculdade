@@ -2,15 +2,11 @@
 import numpy as np
 from math import *
 
-fiboNumber = (
-        (sqrt(5) - 1)
-        /
-        2
-    )
+fiboNumber = ((sqrt(5) - 1)/2)
 
 def function(x):
     return(
-        (2 * sin(x)) - ((pow(x, 2))/10)
+        (2 * sin(x)) - (x**2/10)
     )
 
 def execGoldenRatio(x_l, x_mi, iterations):
@@ -18,9 +14,12 @@ def execGoldenRatio(x_l, x_mi, iterations):
     best_estimative = 0
     best_f_estimative = 0
     
+    # x_l = x esquerdo
+    # x_mi = x direito
+    
     for i in range(iterations):
         
-        d = (fiboNumber - 1)*(x_mi - x_l)
+        d = (fiboNumber)*(x_mi - x_l)
         x1 = x_l + d
         x2 = x_mi - d
         
