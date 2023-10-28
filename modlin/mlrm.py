@@ -1,4 +1,5 @@
 import numpy as np
+from math import sqrt
 
 x = np.array([
     [1, 31, 4],
@@ -34,13 +35,14 @@ beta = np.dot(prodx_inv, xty)
 
 # print(beta)
 
-# print(f"Equação do MRLM: {beta[0][0]:.2f} + {beta[1][0]:.2f} * x1 + {beta[2][0]:.2f} * x2")
+print(f"Equação do MRLM: {beta[0][0]:.2f} + {beta[1][0]:.2f} * x1 + {beta[2][0]:.2f} * x2")
 
 
 # montagem da tabela anova
 n = 5
 p = 2
-coef = float(input("Entre com o coeficiente: "))
+coef = 5.65
+# coef = float(input("Entre com o coeficiente: "))
 
 y_med = np.mean(y)
 
@@ -68,11 +70,31 @@ qm = np.array([(sqreg/p), (sqe/n-p-1), 0])
 f0 = np.array([((sqreg/p)/(sqe/n-p-1)), 0, 0])
 
 
-for i in range(len(gl)):
-    print(f"{gl[i]:.2f} \t {sq[i]:.2f} \t {qm[i]:.2f} \t {f0[i]:.2f}")
+# for i in range(len(gl)):
+    # print(f"{gl[i]:.2f} \t {sq[i]:.2f} \t {qm[i]:.2f} \t {f0[i]:.2f}")
 
 if f0[0] > coef:
     print(f"Hipótese H0 rejeitada(modelo de regressão linear múltipla)")
 else:
     print(f"Hipótese H1 rejeitada(modelo simples)")
+
+
+# Estatística de Teste de Hipótese
+
+tau_square = (np.dot((np.transpose((y - (np.dot(x, beta))))), (y - (np.dot(x, beta))))/n - p - 1)
+tau_square = tau_square[0][0]
+
+comparisson_constant = 4.21
+
+# print(tau_square)
+# print(prodx_inv)
+
+
+for k in range(0, len(beta)):
+    print(k)
+    t_bk = beta[k]/sqrt(tau_square * prodx_inv[k][k])
     
+    if t_bk >= comparisson_constant:
+        print(f"Para {beta[k]}, a hipótese nula é rejeitada.\nValor de t_bk = {t_bk}\n")
+    else:
+        print(f"Para {beta[k]}, a hipótese não-nula é rejeitada.\nValor de t_bk = {t_bk}\n")
