@@ -94,7 +94,7 @@ for k in range(0, len(beta)):
     print(k)
     t_bk = beta[k]/sqrt(tau_square * prodx_inv[k][k])
     
-    if t_bk >= comparisson_constant:
-        print(f"Para {beta[k]}, a hipótese nula é rejeitada.\nValor de t_bk = {t_bk}\n")
+    if t_bk**2 >= comparisson_constant:
+        print(f"Para {beta[k]}, a hipótese nula é rejeitada.\nValor de t_bk**2 = {t_bk**2}\n")
     else:
-        print(f"Para {beta[k]}, a hipótese não-nula é rejeitada.\nValor de t_bk = {t_bk}\n")
+        print(f"Para {beta[k]}, a hipótese não-nula é rejeitada.\nValor de t_bk**2 = {t_bk**2}\n")
