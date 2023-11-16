@@ -25,14 +25,9 @@ prodx_inv = np.linalg.inv(prodx)
 
 prod = np.dot(prodx_inv, x_transpose)
 
-print(prod) # igual ao do professor
-
 beta = np.dot(prod, y)
 
-print(beta) # diferente do professor
-
-# print(f"Equação do MRLM: {beta[0][0]:.2f} + {beta[1][0]:.2f} * x1 + {beta[2][0]:.2f} * x2")
-
+print(f"Equação do MRLM: {beta[0][0]:.2f} + {beta[1][0]:.2f} * x1 + {beta[2][0]:.2f} * x2")
 
 # # montagem da tabela anova
 # n = 5
