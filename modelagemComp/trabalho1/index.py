@@ -30,6 +30,9 @@ for i in range(len(xArr)):
 
 # --------------------------------Plotagem dos Gráficos----------------------------------------------------------------------------------------
 plt.grid()
+plt.title("Gráfico Compra e Venda de Ações")
+plt.xlabel("Tempo(em anos)")
+plt.ylabel("Valor da Ação")
 plt.scatter(xArr, yArr)
 plt.plot(xArr, yf)
 
@@ -39,7 +42,13 @@ y_interval = []
 for i in range(len(interval)):
     y_interval.append(function(interval[i], beta))
 
-plt.plot(interval, y_interval, color="orange")
+plt.plot(interval, y_interval, color="purple")
+plt.scatter(xArr[len(xArr)-1], yArr[len(yArr)-1], color="red") # plotagem do momento de entrada
+plt.scatter(4+(5/12), function(4+(5/12), beta), color="green") # plotagem do momento de saída 1
+plt.scatter(4+(8/12), function(4+(8/12), beta), color="green") # plotagem do momento de saída 2
+plt.scatter(4+(12/12), function(4+(12/12), beta), color="green") # plotagem do momento de saída 3
+
+# label=f"{beta[0]:.2f} + {beta[1]:.2f} * (x) + {beta[2]:.2f} * (x**2) + {beta[3]:.2f} * (x**3) + {beta[4]:.2f} * (x**4) + {beta[5]:.2f} * (x**5)
 
 # ------------------------------------------------------------------------------------------------------------------------
 
@@ -60,11 +69,6 @@ cost = 1000 * yArr[len(yArr)-1] # determinação do valor gasto na compra de 100
 sellingValue1 = 1000 * function(x = 4 + (5/12), beta = beta) # determinação do valor gasto na venda de 1000 ações quando t = 4 anos e 5 meses
 sellingValue2 = 1000 * function(x = 4 + (8/12), beta = beta) # determinação do valor gasto na venda de 1000 ações quando t = 4 anos e 8 meses
 sellingValue3 = 1000 * function(x = 4 + (12/12), beta = beta) # determinação do valor gasto na venda de 1000 ações quando t = 4 anos e 12 meses ou 5 anos
-
-plt.scatter(xArr[len(xArr)-1], yArr[len(yArr)-1], color="red") # plotagem do momento de entrada
-plt.scatter(4+(5/12), function(4+(5/12), beta), color="green") # plotagem do momento de saída 1
-plt.scatter(4+(8/12), function(4+(8/12), beta), color="green") # plotagem do momento de saída 2
-plt.scatter(4+(12/12), function(4+(12/12), beta), color="green") # plotagem do momento de saída 3
 
 # impressão das informações de venda
 print(f"\n\nVENDA\n\nO valor que ele conseguiria através da venda das ações estão listados abaixo:\n\ta) Cinco meses após a compra: R${sellingValue1:.2f}\n\tb) Oito meses após a compra: R${sellingValue2:.2f}\n\tc) Doze meses após a compra: R${sellingValue3:.2f}")
