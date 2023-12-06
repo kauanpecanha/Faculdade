@@ -1,40 +1,73 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
-import csv
-from scipy import linalg
 
 xArr = pd.read_csv("dados.csv")["X"] # definição da matriz X
 yArr = pd.read_csv("dados.csv")["Y"] # definição da matriz Y
 
-grau = 5 # grau pedido
+sum_xi0 = sum([xArr[i] ** 0 for i in range(len(xArr))])
+sum_xi1 = sum([xArr[i] ** 1 for i in range(len(xArr))])
+sum_xi2 = sum([xArr[i] ** 2 for i in range(len(xArr))])
+sum_xi3 = sum([xArr[i] ** 3 for i in range(len(xArr))])
+sum_xi4 = sum([xArr[i] ** 4 for i in range(len(xArr))])
+sum_xi5 = sum([xArr[i] ** 5 for i in range(len(xArr))])
+sum_xi6 = sum([xArr[i] ** 6 for i in range(len(xArr))])
+sum_xi7 = sum([xArr[i] ** 7 for i in range(len(xArr))])
+sum_xi8 = sum([xArr[i] ** 8 for i in range(len(xArr))])
+sum_xi9 = sum([xArr[i] ** 9 for i in range(len(xArr))])
+sum_xi10 = sum([xArr[i] ** 10 for i in range(len(xArr))])
 
-# Criação da matriz de 101x6, composta pelos coeficientes de x que deram origem aos valores de yArr
-X = np.zeros((len(yArr), grau + 1)) # criação da matriz de zeros das dimensões especificadas(nesse caso, 101x6) - 6, pois o primeiro índice é 1, ou seja, grau 0, e de 0 a 5, são seis números
+n = len(xArr)
 
-for i in range(len(yArr)): # para cada linha
-    
-    for j in range(grau + 1): # para cada coluna
-        
-        X[i, j] = xArr[i] ** j # o elemento da matriz de vandermonde é o elemento em questão da matriz x, elevado ao grau em questão
-        
-beta = np.linalg.lstsq(X, yArr)[0] # resolução linear dessa matriz para determinação dos coeficientes
+sum_yi = sum([yArr[i] for i in range(len(yArr))])
+sum_yixi = sum([yArr[i] * xArr[i] for i in range(len(yArr))])
+sum_yixi2 = sum([yArr[i] * (xArr[i] ** 2) for i in range(len(yArr))])
+sum_yixi3 = sum([yArr[i] * (xArr[i] ** 3) for i in range(len(yArr))])
+sum_yixi4 = sum([yArr[i] * (xArr[i] ** 4) for i in range(len(yArr))])
+sum_yixi5 = sum([yArr[i] * (xArr[i] ** 5) for i in range(len(yArr))])
+
+y = np.array([
+    [sum_yi],
+    [sum_yixi],
+    [sum_yixi2],
+    [sum_yixi3],
+    [sum_yixi4],
+    [sum_yixi5],
+])
+
+x = np.array([
+    [n, sum_xi1, sum_xi2, sum_xi3, sum_xi4, sum_xi5],
+    [sum_xi1, sum_xi2, sum_xi3, sum_xi4, sum_xi5, sum_xi6],
+    [sum_xi2, sum_xi3, sum_xi4, sum_xi5, sum_xi6, sum_xi7],
+    [sum_xi3, sum_xi4, sum_xi5, sum_xi6, sum_xi7, sum_xi8],
+    [sum_xi4, sum_xi5, sum_xi6, sum_xi7, sum_xi8, sum_xi9],
+    [sum_xi5, sum_xi6, sum_xi7, sum_xi8, sum_xi9, sum_xi10],
+])
+
+x_transpose = np.linalg.inv(x)
+
+beta = x_transpose @ x
+
+beta = np.linalg.inv(beta)
+
+beta = beta @ x_transpose
+
+beta = beta @ y
+
+print(beta)
+
+plt.scatter(xArr, yArr)
 
 def function(x, beta): # função de previsão utilizando dos coeficientes encontrados
-    # b0 + b1 * x + b2 * x**2 + b3 * x**3 + b4 * x**4 + b5 * x**5
-    return beta[0] + beta[1] * (x) + beta[2] * (x**2) + beta[3] * (x**3) + beta[4] * (x**4) + beta[5] * (x**5)
+    # b0 * x ** 0 + b1 * x ** 1 + b2 * x**2 + b3 * x**3 + b4 * x**4
+    return beta[0] * (x ** 0) + beta[1] * (x) + beta[2] * (x**2) + beta[3] * (x**3) + beta[4] * (x**4) + beta[5] * (x**5)
 
 yf = [] # vetor para armazenar os valores de y de acordo com a função resultante
 for i in range(len(xArr)):
     yf.append(function(xArr[i], beta)) # armazenamento dos valores
 
-# --------------------------------Plotagem dos Gráficos----------------------------------------------------------------------------------------
-plt.grid()
-plt.title("Gráfico Compra e Venda de Ações")
-plt.xlabel("Tempo(em anos)")
-plt.ylabel("Valor da Ação")
-plt.scatter(xArr, yArr)
 plt.plot(xArr, yf)
+plt.show()
 
 # 1 - Se houver, em que momento o preço das ações deixa de ter um comportamento decrescente?
 interval = np.linspace(xArr[len(xArr)-1], 5, 1000)
@@ -47,8 +80,17 @@ plt.scatter(xArr[len(xArr)-1], yArr[len(yArr)-1], color="red") # plotagem do mom
 plt.scatter(4+(5/12), function(4+(5/12), beta), color="green") # plotagem do momento de saída 1
 plt.scatter(4+(8/12), function(4+(8/12), beta), color="green") # plotagem do momento de saída 2
 plt.scatter(4+(12/12), function(4+(12/12), beta), color="green") # plotagem do momento de saída 3
+plt.show()
 
-# label=f"{beta[0]:.2f} + {beta[1]:.2f} * (x) + {beta[2]:.2f} * (x**2) + {beta[3]:.2f} * (x**3) + {beta[4]:.2f} * (x**4) + {beta[5]:.2f} * (x**5)
+# Gráfico todo
+
+plt.scatter(xArr, yArr)
+plt.plot(xArr, yf)
+plt.plot(interval, y_interval, color="purple")
+plt.scatter(xArr[len(xArr)-1], yArr[len(yArr)-1], color="red") # plotagem do momento de entrada
+plt.scatter(4+(5/12), function(4+(5/12), beta), color="green") # plotagem do momento de saída 1
+plt.scatter(4+(8/12), function(4+(8/12), beta), color="green") # plotagem do momento de saída 2
+plt.scatter(4+(12/12), function(4+(12/12), beta), color="green") # plotagem do momento de saída 3
 
 # ------------------------------------------------------------------------------------------------------------------------
 
