@@ -30,7 +30,7 @@ def setInterval(x_data, beta):
     
     return x_interval, y_interval
 
-def plotGraphic(x_data, y_data, beta, y_function, x_interval, y_interval, key, grid):
+def plotGraphic(x_data, y_data, beta, y_function, x_interval, y_interval, key, grid = True):
     
     if key == 1:
         if grid == True:
@@ -52,13 +52,16 @@ def plotGraphic(x_data, y_data, beta, y_function, x_interval, y_interval, key, g
         plt.legend()
         plt.show()
     elif key == 3:
+        plt.title("Previsão quando t = [4, 5]")
+        plt.xlabel("Tempo(em anos)")
+        plt.ylabel("Valor da ação(em reais)")
         if grid == True:
             plt.grid()
         plt.plot(x_interval, y_interval, color="purple", label="Previsão t=[4, 5]")
         plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
         plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
-        plt.scatter(4+(8/12), function(4+(8/12), beta), color="green", label="Saída 2") # plotagem do momento de saída 2
-        plt.scatter(4+(12/12), function(4+(12/12), beta), color="green", label="Saída 3") # plotagem do momento de saída 3
+        plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
+        plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
         plt.legend()
         plt.show()
     elif key == 4:
@@ -72,8 +75,8 @@ def plotGraphic(x_data, y_data, beta, y_function, x_interval, y_interval, key, g
         plt.plot(x_interval, y_interval, color="purple", label="Previsão Polinomial")
         plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
         plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
-        plt.scatter(4+(8/12), function(4+(8/12), beta), color="green", label="Saída 2") # plotagem do momento de saída 2
-        plt.scatter(4+(12/12), function(4+(12/12), beta), color="green", label="Saída 3") # plotagem do momento de saída 3
+        plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
+        plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
         plt.legend()
         plt.show()
 
