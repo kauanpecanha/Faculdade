@@ -36,47 +36,98 @@ def plotGraphic(x_data, y_data, beta, y_function, x_interval, y_interval, key, g
         if grid == True:
             plt.grid()
         plt.scatter(x_data, y_data, label="Dados")
-        plt.title("Gráfico Valor da Ação x Tempo")
-        plt.xlabel("Tempo(em anos)")
-        plt.ylabel("Valor da ação(em reais)")
+        plt.title("Gráfico valor da ação x Tempo")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da ação (em reais)")
         plt.legend()
         plt.show()
     elif key == 2:
         plt.scatter(x_data, y_data, label="Dados")
         if grid == True:
             plt.grid()
-        plt.title("Regressão Polinomial")
-        plt.xlabel("Tempo(em anos)")
-        plt.ylabel("Valor da ação(em reais)")
-        plt.plot(x_data, y_function, label="Regressão Polinomial")
+        plt.title("Regressão polinomial")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da ação (em reais)")
+        plt.plot(x_data, y_function, label="Regressão polinomial")
         plt.legend()
         plt.show()
     elif key == 3:
-        plt.title("Previsão quando t = [4, 5]")
-        plt.xlabel("Tempo(em anos)")
-        plt.ylabel("Valor da ação(em reais)")
+        # plt.scatter(x_data, y_data, label="Dados")
+        if grid == True:
+            plt.grid()
+        plt.title("Regressão polinomial")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da ação (em reais)")
+        plt.plot(x_data, y_function, label="Regressão polinomial")
+        plt.legend()
+        plt.show()
+    elif key == 4:
+        plt.title(f"Previsão quando t = [4, {( (4) + (5/12) ):.2f}]")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da ação (em reais)")
         if grid == True:
             plt.grid()
         plt.plot(x_interval, y_interval, color="purple", label="Previsão t=[4, 5]")
         plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
         plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
+        # plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
+        # plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
+        plt.legend()
+        plt.show()
+    elif key == 5:
+        plt.title(f"Previsão quando t = [4, {( (4) + (8/12) ):.2f}]")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da ação (em reais)")
+        if grid == True:
+            plt.grid()
+        plt.plot(x_interval, y_interval, color="purple", label="Previsão t=[4, 5]")
+        plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
+        # plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
         plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
+        # plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
+        plt.legend()
+        plt.show()
+    elif key == 6:
+        plt.title("Previsão quando t = [4, 5]")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da ação (em reais)")
+        if grid == True:
+            plt.grid()
+        plt.plot(x_interval, y_interval, color="purple", label="Previsão t=[4, 5]")
+        plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
+        # plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
+        # plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
         plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
         plt.legend()
         plt.show()
-    elif key == 4:
+    elif key == 7:
         if grid == True:
             plt.grid()
         plt.title("Gráfico Total")
-        plt.xlabel("Tempo(em anos)")
-        plt.ylabel("Valor da Ação(em reais)")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da Ação (em reais)")
         plt.scatter(x_data, y_data, label="Dados")
-        plt.plot(x_data, y_function, label="Regressão Polinomial")
-        plt.plot(x_interval, y_interval, color="purple", label="Previsão Polinomial")
+        plt.plot(x_data, y_function, label="Regressão polinomial")
+        plt.plot(x_interval, y_interval, color="purple", label="Previsão polinomial")
         plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
         plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
         plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
         plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
+        plt.legend()
+        plt.show()
+    elif key == 8:
+        if grid == True:
+            plt.grid()
+        plt.title("Gráfico Total")
+        plt.xlabel("Tempo (em anos)")
+        plt.ylabel("Valor da Ação (em reais)")
+        # plt.scatter(x_data, y_data, label="Dados")
+        plt.plot(x_data, y_function, label="Regressão polinomial")
+        plt.plot(x_interval, y_interval, color="purple", label="Previsão polinomial")
+        # plt.scatter(x_data[len(x_data)-1], y_data[len(y_data)-1], color="red", label="Entrada") # plotagem do momento de entrada
+        # plt.scatter(4+(5/12), function(4+(5/12), beta), color="green", label="Saída 1") # plotagem do momento de saída 1
+        # plt.scatter(4+(8/12), function(4+(8/12), beta), color="brown", label="Saída 2") # plotagem do momento de saída 2
+        # plt.scatter(4+(12/12), function(4+(12/12), beta), color="aqua", label="Saída 3") # plotagem do momento de saída 3
         plt.legend()
         plt.show()
 
