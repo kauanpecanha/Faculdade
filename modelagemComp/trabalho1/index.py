@@ -1,12 +1,27 @@
+# importação das bibliotecas necessárias
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
 
-from data import xArr, yArr, beta, interval, y_interval, cost, sellingValue1, sellingValue2, sellingValue3, yf, beta
-from functions import solveMatrix, function, plotGraphic, setInterval, linearModel
+# importação das variáveis necessárias
+from data import (
+    xArr,
+    yArr,
+    beta,
+    interval,
+    y_interval,
+    cost,
+    sellingValue1,
+    sellingValue2,
+    sellingValue3,
+    yf
+)
 
+# importação da função de plotagem
+from functions import plotGraphic
+
+# escopo de execução do programa, que nada mais é do que um loop que permite ao
+# usuário executar as plotagens como melhor pretender, e de forma fácil
 while(True):
-    # 
     print("\n\n\t\t Trabalho de Modelagem Computacional \t\t\n\n")
     
     # Input que permite o usuário escolher qual dos gráficos deseja visualizar
@@ -56,5 +71,6 @@ print(f"\n\nVENDA\n\nO valor que ele conseguiria através da venda das ações e
 # impressão das informações de lucro
 print(f"\n\nLUCRO\n\nOs valores de lucro são listados abaixo:\n\ta) Cinco meses após a compra: R${(sellingValue1[0] - cost):.2f}\n\tb) Oito meses após a compra: R${(sellingValue2[0] - cost):.2f}\n\tc) Doze meses após a compra: R${(sellingValue3[0] - cost):.2f}\n\n\n")
 
+# mensagem final de prompt
 print("-"*40 + " Trabalho de Modelagem Computacional " + "-"*40)
 print("\n\nFeito por:\n\n\t Kauan Peçanha Lira - Engenharia de Computação - 202110048911\n\t Fellipe de Sá Moraes - Engenharia Mecânica - 202110064311\n\t Julia Fontenla - Engenharia Mecânica - 202110065511\n\n")
