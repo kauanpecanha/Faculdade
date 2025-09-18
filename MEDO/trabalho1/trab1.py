@@ -85,43 +85,51 @@ result = solve_rk4(system, y0, t, h)
 #     print(f"{t[i]:.2f}\t{result[i,0]:.6f}\t{result[i,1]:.6f}")
     
 # ========================================== Implementação da Instrução 4 ==========================================
-
+# coeficientes fornecidos
 coeficientes = [
-    (13.1, -13.94, 1.71),      # valores originais
-    (15.0, -13.94, 1.71),      # variação em a1
-    (13.1, -15.0, 1.71),       # variação em a2
-    (13.1, -13.94, 2.0),       # variação em b1
-    (12.0, -12.0, 1.5),        # variação em todos
+    (13.1, -13.94, 1.71),   
+    (16.00, -13.94, 1.71),  
+    (13.1, -17.00, 1.71),   
+    (13.1, -13.94, 0.95),   
+    (11.00, -12.0, 1.95),
 ]
 
 labels = [
-    "(13.1, -13.94, 1.71)",
-    "(15.0, -13.94, 1.71)",
-    "(13.1, -15.0, 1.71)",
-    "(13.1, -13.94, 2.0)",
-    "(12.0, -12.0, 1.5)"
+    "13.1g -13.94g²",
+    "16.00g, -13.94g²",
+    "13.1g, -17.00g²",
+    "13.1g, -13.94g²",
+    "11.00g, -12.0g²"
 ]
 
-plt.figure(figsize=(8, 5))
+# Gráfico de G(t)
+plt.figure(figsize=(7,5))
 for idx, (a1, a2, b1) in enumerate(coeficientes):
-    def dG(G):
-        return a1 * G + a2 * G**2
-    def dF(G):
-        return b1 * G
-    def system(vars):
-        G, F = vars
-        return np.array([dG(G), dF(G)])
     y0 = [G_init, F_init]
-    result = solve_rk4(system, y0, t, h)
-    if(idx == 0):
-        plt.plot(t, result[:, 0], label=f'G/F - {labels[idx]}')
-    else:
-        plt.plot(t, result[:, 0], '--', label=f'G/F - {labels[idx]}')
-
-plt.xlabel('Tempo')
-plt.ylabel('Concentração adimensional de G')
+    result = solve_rk4(lambda vars: np.array([a1*vars[0] + a2*vars[0]**2, b1*vars[0]]), y0, t, h)
+    plt.plot(t, result[:, 0], label=f"G - {labels[idx]}")
+plt.title("Evolução de G(t)")
+plt.xlabel("Tempo")
+plt.ylabel("G")
 plt.legend()
-plt.title('Análise de Sensibilidade dos Coeficientes')
-plt.grid(True)
-plt.tight_layout()
+plt.show()
+
+labels = [
+    "13.1g -13.94g²",
+    "16.00g, -13.94g²",
+    "13.1g, -17.00g²",
+    "13.1g, -13.94g²",
+    "11.00g, -12.0g²"
+]
+
+# Gráfico de F(t)
+plt.figure(figsize=(7,5))
+for idx, (a1, a2, b1) in enumerate(coeficientes):
+    y0 = [G_init, F_init]
+    result = solve_rk4(lambda vars: np.array([a1*vars[0] + a2*vars[0]**2, b1*vars[0]]), y0, t, h)
+    plt.plot(t, result[:, 1], label=f"F - {labels[idx]}")
+plt.title("Evolução de F(t)")
+plt.xlabel("Tempo")
+plt.ylabel("F")
+plt.legend()
 plt.show()
