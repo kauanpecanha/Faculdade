@@ -39,10 +39,24 @@ y0 = [G_init, F_init]
 
 result = solve_rk4(system, y0, t, h)
 
-# # Exemplo de plot
+# Exemplo de plot
 plt.plot(t, result[:, 0], label='G (Células)')
 plt.plot(t, result[:, 1], label='F (Penicilina)')
 plt.title('Gráfico de G e F')
+plt.xlabel('Tempo')
+plt.ylabel('Concentração adimensional')
+plt.legend()
+plt.show()
+
+plt.plot(t, result[:, 0], label='G (Células)')
+plt.title('Gráfico de G')
+plt.xlabel('Tempo')
+plt.ylabel('Concentração adimensional')
+plt.legend()
+plt.show()
+
+plt.plot(t, result[:, 1], label='F (Penicilina)', color='orange')
+plt.title('Gráfico de F')
 plt.xlabel('Tempo')
 plt.ylabel('Concentração adimensional')
 plt.legend()
@@ -88,48 +102,85 @@ result = solve_rk4(system, y0, t, h)
 # coeficientes fornecidos
 coeficientes = [
     (13.1, -13.94, 1.71),   
-    (16.00, -13.94, 1.71),  
-    (13.1, -17.00, 1.71),   
-    (13.1, -13.94, 0.95),   
-    (11.00, -12.0, 1.95),
+    (16.00, -13.94, 1.72),  
+    (13.1, -17.00, 1.86),   
+    (13.1, -13.94, 2.00),   
+    (11.00, -12.0, 2.25),
 ]
 
-labels = [
+labelsG = [
     "13.1g -13.94g²",
-    "16.00g, -13.94g²",
-    "13.1g, -17.00g²",
-    "13.1g, -13.94g²",
-    "11.00g, -12.0g²"
+    "16.00g -13.94g²",
+    "13.1g -17.00g²",
+    "13.1g -13.94g²",
+    "11.00g -12.0g²"
 ]
+
+labelsF = [
+    "1.71g",
+    "1.72g",
+    "1.86g",
+    "2.00g",
+    "2.25g"
+]
+
+# Solução de referência (primeira tripla de coeficientes)
+a1_ref, a2_ref, b1_ref = coeficientes[0]
+y0 = [G_init, F_init]
+ref = solve_rk4(lambda vars: np.array([a1_ref*vars[0] + a2_ref*vars[0]**2, b1_ref*vars[0]]), y0, t, h)
 
 # Gráfico de G(t)
 plt.figure(figsize=(7,5))
 for idx, (a1, a2, b1) in enumerate(coeficientes):
     y0 = [G_init, F_init]
     result = solve_rk4(lambda vars: np.array([a1*vars[0] + a2*vars[0]**2, b1*vars[0]]), y0, t, h)
-    plt.plot(t, result[:, 0], label=f"G - {labels[idx]}")
+    plt.plot(t, result[:, 0], label=f"G - {labelsG[idx]}")
 plt.title("Evolução de G(t)")
 plt.xlabel("Tempo")
 plt.ylabel("G")
 plt.legend()
 plt.show()
 
-labels = [
-    "13.1g -13.94g²",
-    "16.00g, -13.94g²",
-    "13.1g, -17.00g²",
-    "13.1g, -13.94g²",
-    "11.00g, -12.0g²"
-]
-
 # Gráfico de F(t)
 plt.figure(figsize=(7,5))
 for idx, (a1, a2, b1) in enumerate(coeficientes):
     y0 = [G_init, F_init]
     result = solve_rk4(lambda vars: np.array([a1*vars[0] + a2*vars[0]**2, b1*vars[0]]), y0, t, h)
-    plt.plot(t, result[:, 1], label=f"F - {labels[idx]}")
+    plt.plot(t, result[:, 1], label=f"F - {labelsF[idx]}")
 plt.title("Evolução de F(t)")
 plt.xlabel("Tempo")
 plt.ylabel("F")
+plt.legend()
+plt.show()
+
+# Gráfico de erro de G(t)
+plt.figure(figsize=(7,5))
+for idx, (a1, a2, b1) in enumerate(coeficientes):
+    if idx == 0:
+        continue  # Pular a solução de referência
+    y0 = [G_init, F_init]
+    result = solve_rk4(lambda vars: np.array([a1*vars[0] + a2*vars[0]**2, b1*vars[0]]), y0, t, h)
+    erro_G = np.abs(result[:, 0] - ref[:, 0])
+    plt.plot(t, erro_G, label=f"Erro G - {labelsG[idx]}")
+plt.title("Erro em G(t) comparado à referência")
+plt.xlabel("Tempo")
+plt.ylabel("G")
+plt.yscale('log')
+plt.legend()
+plt.show() 
+
+# Gráfico de erro de F(t)
+plt.figure(figsize=(7,5))
+for idx, (a1, a2, b1) in enumerate(coeficientes):
+    if idx == 0:
+        continue  # Pular a solução de referência
+    y0 = [G_init, F_init]
+    result = solve_rk4(lambda vars: np.array([a1*vars[0] + a2*vars[0]**2, b1*vars[0]]), y0, t, h)
+    erro_F = np.abs(result[:, 1] - ref[:, 1])
+    plt.plot(t, erro_F, label=f"Erro F - {labelsF[idx]}")
+plt.title("Erro em F(t) comparado à referência")
+plt.xlabel("Tempo")
+plt.ylabel("F")
+plt.yscale('log')
 plt.legend()
 plt.show()
