@@ -51,24 +51,27 @@ if __name__ == "__main__":
     E = 200e9
     I = 5e-5
 
-    for n in [5, 10, 20, 40, 80]:
-      x, y = deflexao_viga(L, P, E, I, n)
-      plt.figure(figsize=(6, 4))
-      plt.plot(x, y, marker='o')
-      plt.title('Deflexão da Viga (carga concentrada no centro) - n={}'.format(n))
-      plt.xlabel('Posição ao longo da viga (m)')
-      plt.ylabel('Deflexão (m)')
-      plt.grid()
-      plt.show()
-
+    # arrays para múltiplas análises
     n_values = [5, 10, 20, 40, 80]
+
+    # Análise para diferentes valores de n
+    for n in n_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.figure(figsize=(6, 4))
+        plt.plot(x, y, marker="o")
+        plt.title(f"Deflexão da Viga (carga concentrada no centro) - n={n}")
+        plt.xlabel("Posição ao longo da viga (m)")
+        plt.ylabel("Deflexão (m)")
+        plt.grid()
+        plt.show()
+
     fig, axs = plt.subplots(1, len(n_values), figsize=(18, 4))
     for ax, n in zip(axs, n_values):
         x, y = deflexao_viga(L, P, E, I, n)
-        ax.plot(x, y, marker='o', label=f'n={n}')
-        ax.set_title(f'n = {n}')
-        ax.set_xlabel('Posição (m)')
-        ax.set_ylabel('Deflexão (m)')
+        ax.plot(x, y, marker="o", label=f"n={n}")
+        ax.set_title(f"n = {n}")
+        ax.set_xlabel("Posição (m)")
+        ax.set_ylabel("Deflexão (m)")
         ax.grid(True)
         ax.legend()
     plt.tight_layout()
@@ -77,10 +80,140 @@ if __name__ == "__main__":
     plt.figure(figsize=(8, 5))
     for n in n_values:
         x, y = deflexao_viga(L, P, E, I, n)
-        plt.plot(x, y, marker='o', label=f'n={n}')
-    plt.title('Refinamento de Malha - Comparação das Deflexões')
-    plt.xlabel('Posição ao longo da viga (m)')
-    plt.ylabel('Deflexão (m)')
+        plt.plot(x, y, marker="o", label=f"n={n}")
+    plt.title("Refinamento de Malha - Comparação das Deflexões")
+    plt.xlabel("Posição ao longo da viga (m)")
+    plt.ylabel("Deflexão (m)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    # número fixo de pontos para as próximas análises
+    n = 5
+    L = 10.0
+    # P = 10000.0
+    E = 200e9
+    I = 5e-5
+
+    # Análise para diferentes valores de carga concentrada P
+    P_values = [5*(10**3), 10*(10**3), 20*(10**3)]
+
+    for P in P_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.figure(figsize=(6, 4))
+        plt.plot(x, y, marker="o")
+        plt.title(f"Efeito da Carga na Deflexão da Viga - P={P} N")
+        plt.xlabel("Posição ao longo da viga (m)")
+        plt.ylabel("Deflexão (m)")
+        plt.legend()
+        plt.grid()
+        plt.show()
+
+    fig, axs = plt.subplots(1, len(P_values), figsize=(18, 4))
+    for ax, P in zip(axs, P_values):
+        x, y = deflexao_viga(L, P, E, I, n)
+        ax.plot(x, y, marker="o", label=f"P={P} N")
+        ax.set_title(f"P = {P} N")
+        ax.set_xlabel("Posição (m)")
+        ax.set_ylabel("Deflexão (m)")
+        ax.grid(True)
+        ax.legend()
+    plt.tight_layout()
+    plt.show()
+
+    plt.figure(figsize=(8, 5))
+    for P in P_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.plot(x, y, marker="o", label=f"P={P} N")
+    plt.title("Efeito da Carga na Deflexão da Viga")
+    plt.xlabel("Posição ao longo da viga (m)")
+    plt.ylabel("Deflexão (m)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    n = 5
+    L = 10.0
+    P = 10000.0
+    E = 200e9
+    # I = 5e-5
+
+    # Análise para diferentes valores de I
+    I_values = [5e-5, 10e-5, 20e-5]
+
+    for I in I_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.figure(figsize=(6, 4))
+        plt.plot(x, y, marker="o")
+        plt.title(f"Efeito da Inércia na Deflexão da Viga - I={I} m^4")
+        plt.xlabel("Posição ao longo da viga (m)")
+        plt.ylabel("Deflexão (m)")
+        plt.legend()
+        plt.grid()
+        plt.show()
+
+    fig, axs = plt.subplots(1, len(I_values), figsize=(18, 4))
+    for ax, I in zip(axs, I_values):
+        x, y = deflexao_viga(L, P, E, I, n)
+        ax.plot(x, y, marker="o", label=f"I={I} m^4")
+        ax.set_title(f"I = {I} m^4")
+        ax.set_xlabel("Posição (m)")
+        ax.set_ylabel("Deflexão (m)")
+        ax.grid(True)
+        ax.legend()
+    plt.tight_layout()
+    plt.show()
+
+    plt.figure(figsize=(8, 5))
+    for I in I_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.plot(x, y, marker="o", label=f"I={I} m^4")
+    plt.title("Efeito da Inércia na Deflexão da Viga")
+    plt.xlabel("Posição ao longo da viga (m)")
+    plt.ylabel("Deflexão (m)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    n = 5
+    L = 10.0
+    P = 10000.0
+    # E = 200e9
+    I = 5e-5
+
+    # Análise para diferentes valores de E
+    E_values = [200e9, 400e9, 800e9]
+
+    for E in E_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.figure(figsize=(6, 4))
+        plt.plot(x, y, marker="o")
+        plt.title(f"Efeito do Módulo de Elasticidade na Deflexão da Viga - E={E/1e9} GPa")
+        plt.xlabel("Posição ao longo da viga (m)")
+        plt.ylabel("Deflexão (m)")
+        plt.legend()
+        plt.grid()
+        plt.show()
+
+    fig, axs = plt.subplots(1, len(E_values), figsize=(18, 4))
+    for ax, E in zip(axs, E_values):
+        x, y = deflexao_viga(L, P, E, I, n)
+        ax.plot(x, y, marker="o", label=f"E={E/1e9} GPa")
+        ax.set_title(f"E = {E/1e9} GPa")
+        ax.set_xlabel("Posição (m)")
+        ax.set_ylabel("Deflexão (m)")
+        ax.grid(True)
+        ax.legend()
+    plt.tight_layout()
+    plt.show()
+
+    plt.figure(figsize=(8, 5))
+    for E in E_values:
+        x, y = deflexao_viga(L, P, E, I, n)
+        plt.plot(x, y, marker="o", label=f"E={E/1e9} GPa")
+    plt.title("Efeito do Módulo de Elasticidade na Deflexão da Viga")
+    plt.xlabel("Posição ao longo da viga (m)")
+    plt.ylabel("Deflexão (m)")
     plt.legend()
     plt.grid(True)
     plt.show()
