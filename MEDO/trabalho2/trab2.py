@@ -96,7 +96,7 @@ if __name__ == "__main__":
     I = 5e-5
 
     # Análise para diferentes valores de carga concentrada P
-    P_values = [5*(10**3), 10*(10**3), 20*(10**3)]
+    P_values = [10*(10**3), 20*(10**3), 40*(10**3)]
 
     for P in P_values:
         x, y = deflexao_viga(L, P, E, I, n)
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     # I = 5e-5
 
     # Análise para diferentes valores de I
-    I_values = [5e-5, 10e-5, 20e-5]
+    I_values = [5*10**(-5), 10*10**(-5), 20*10**(-5)]
 
     for I in I_values:
         x, y = deflexao_viga(L, P, E, I, n)
