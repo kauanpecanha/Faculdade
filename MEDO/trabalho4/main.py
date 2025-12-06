@@ -29,6 +29,9 @@ def simulate_advection(u, dx, dt, n, t_total, TA, T_initial):
 
     return Ts
 
+def calculate_stability(u, dt, dx):
+    return abs(u) * dt / dx
+
 # 4.1. Parâmetros do problema
 # comprimento da barra (m)
 L = 1.0
@@ -48,12 +51,6 @@ T_initial = 20.0
 dx = L / (n - 1)
 x = np.linspace(0, L, n)
 
-# Verificação da condição CFL
-cfl = abs(u) * dt / dx
-print("CFL =", cfl)
-if cfl > 1:
-    print("Violação da condição CFL! O método será instável.")
-
 # 4.2. Condição inicial
 T = np.ones(n) * T_initial
 
@@ -72,15 +69,15 @@ for tp in tempos_plot:
     plt.plot(x, Ts[tp], label=f"t = {tp:.1f} s")
 plt.xlabel("x (m)")
 plt.ylabel("Temperatura (°C)")
-plt.title("Equação de Advecção 1D - Método Explícito")
+plt.title(f"Distribuição de Temperatura na Barra - dx = {dx:.4f}, dt = {dt:.4f}, CFL={calculate_stability(u, dt, dx):.2f}")
 plt.grid(True)
 plt.legend()
 plt.show()
 
 # 4.6. Estudo de Estabilidade
-dt_values = [0.01, 0.02, 0.03, 0.04]
-dx_values = [0.1, 0.05, 0.02, 0.01]
-u_values = [0.05, 0.1, 0.15, 0.2]
+dt_values = [0.01, 0.02, 0.1, 0.2]
+dx_values = [0.1, 0.05, 0.005, 0.001]
+u_values = [0.05, 0.1, 0.2, 0.5]
 
 # Variação de valores de passo de tempo
 for dt in dt_values:
@@ -90,13 +87,14 @@ for dt in dt_values:
         plt.plot(np.linspace(0, L, n), Ts[tp], label=f"t = {tp:.1f} s")
     plt.xlabel("x (m)")
     plt.ylabel("Temperatura (°C)")
-    plt.title(f"Análise de Convergência (tempo) - Advecção 1D - dx = {dx}, dt = {dt}")
+    plt.title(f"Análise de Estabilidade (variação de tempo) - dx = {dx}, dt = {dt}, CFL={calculate_stability(u, dt, dx):.2f}")
     plt.grid(True)
     plt.legend()
     plt.show()
 
-
 # Variação de valores de passo de espaço
+dt = 0.05
+u = 0.1
 for dx in dx_values:
     Ts = simulate_advection(u, dx, dt, n, t_total, TA, T_initial)
     plt.figure(figsize=(10,5))
@@ -104,12 +102,14 @@ for dx in dx_values:
         plt.plot(np.linspace(0, L, n), Ts[tp], label=f"t = {tp:.1f} s")
     plt.xlabel("x (m)")
     plt.ylabel("Temperatura (°C)")
-    plt.title(f"Análise de convergência (espaço) Advecção 1D - dx = {dx}, dt = {dt}")
+    plt.title(f"Análise de Estabilidade (variação de espaço) - dx = {dx}, dt = {dt}, CFL={calculate_stability(u, dt, dx):.2f}")
     plt.grid(True)
     plt.legend()
     plt.show()
 
 # Variação de valores de velocidade de advecção
+dt = 0.05
+dx = 0.01
 for u in u_values:
     Ts = simulate_advection(u, dx, dt, n, t_total, TA, T_initial)
     plt.figure(figsize=(10,5))
@@ -117,7 +117,7 @@ for u in u_values:
         plt.plot(np.linspace(0, L, n), Ts[tp], label=f"t = {tp:.1f} s")
     plt.xlabel("x (m)")
     plt.ylabel("Temperatura (°C)")
-    plt.title(f"Análise de Convergência (velocidade) Advecção 1D - u = {u}, dt = {dt}")
+    plt.title(f"Análise de Convergência (velocidade) Advecção 1D - u = {u}, dt = {dt}, dx = {dx}, CFL={calculate_stability(u, dt, dx):.2f}")
     plt.grid(True)
     plt.legend()
     plt.show()
