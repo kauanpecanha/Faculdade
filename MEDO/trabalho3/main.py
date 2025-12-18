@@ -75,7 +75,7 @@ def construir_matriz_sistema():
     ab = np.zeros((3, n))
     ab[0, 1:] = diag_upper   # Diagonal superior 
     ab[1, :] = diag_main     # Diagonal principal
-    ab[2, :-1] = diag_lower  # Diagonal inferior 
+    ab[2, :-1] = diag_lower  # Diagonal inferior
     
     return ab
 
