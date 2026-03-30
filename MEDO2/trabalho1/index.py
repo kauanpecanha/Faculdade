@@ -84,3 +84,4 @@ plt.xlabel("x (m)")
 plt.ylabel("y (m)")
 
 plt.savefig("./mapa_calor.png", dpi=300, bbox_inches="tight")
+
