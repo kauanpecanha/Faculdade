@@ -2,7 +2,7 @@
 
 Mude para o diretório onde se encontra o código
 ```bash
-cd MEDO2/trabalho1
+cd MEDO2/l1-questao1
 ```
 
 Crie o ambiente virtual
