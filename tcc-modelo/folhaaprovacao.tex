@@ -1,0 +1,36 @@
+\newcommand{\imprimirfolhaaprovacao}{%
+	\begin{folhadeaprovacao}
+		\begin{center}
+			%{\large{\imprimirautor}}\\[1cm]
+            {\imprimirautor}\\[1cm]
+			\vspace{2cm}
+			%{\Large\bfseries\imprimirtitulo}
+            {\bfseries\imprimirtitulo}
+		\end{center}		
+		\vspace{1cm}
+		\hspace{.45\textwidth}
+		\begin{minipage}{.5\textwidth}
+			{\fontsize{12}{12}\selectfont{\imprimirpreambulo}}
+		\end{minipage}%
+		\\\\\\\\
+		\vspace{1cm}
+		Aprovado em XX de XXXXXXXX de 2025.\\
+		\vspace{1.5cm}
+		Banca examinadora:
+		
+		\assinatura{\flushleft{\imprimirorientador\vspace{0.2cm}\\Instituto Politécnico - UERJ}}
+		\assinatura{\flushleft{\membrobancaA\\\intituicaoBancaA}}
+        \assinatura{\flushleft{\membrobancaB\\\intituicaoBancaB}}
+		\begin{center}
+			\vfill
+			%{\large\imprimirlocal}
+			{\imprimirlocal}
+			\vspace{0.2cm}
+			\par
+			%{\large\the\year}
+			{\the\year}
+		\end{center}		
+	\end{folhadeaprovacao}
+}
+
+\imprimirfolhaaprovacao

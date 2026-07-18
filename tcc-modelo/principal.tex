@@ -1,0 +1,184 @@
+\documentclass[
+    chapter=TITLE,
+    12pt, 		% Tamanho da fonte
+    openright,% Capítulos começam em pág. ímpar (insere página vazia caso preciso)
+    oneside, 	% Para impressão somente verso. Oposto a impressão em verso e anverso
+    hidelinks,
+    a4paper, 	% Tamanho do papel
+    english, 	% Idioma adicional para hifenização
+    brazil 		% o último idioma é o principal do documento
+    ]{abntex2}
+
+\renewcommand{\theequation}{\arabic{equation}}  
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usetikzlibrary{calc}
+\usepackage{lipsum} 	% para geração de dummy text
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{svg}
+
+\usepackage{pdflscape} %para poder rotacionar a página
+%\usepackage[table,xcdraw]{xcolor}
+\PassOptionsToPackage{table,xcdraw}{xcolor}
+
+% Pacotes
+%% Sumário
+%\usepackage{tocloft}
+\setlength{\cftbeforechapterskip}{0pt}
+
+
+%% Referência
+%\usepackage[hyphenbreaks]{breakurl}
+% \usepackage[alf]{abntex2cite}
+% \usepackage[alf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite} %et al qnd cita apenas
+\usepackage[
+    alf,                    % estilo alfabético    
+    bibjustif,              % justifica as referências
+    abnt-etal-cite=2,       % “et al.” a partir de 2 autores nas citações
+    abnt-etal-list=3,       % até 3 nomes nas entradas da bibliografia
+    abnt-full-initials=no,  % iniciais mínimas nos nomes
+    abnt-emphasize=italic,  % títulos de obras em itálico
+    abnt-repeated-author=no,% não repete sobrenome em entradas subsequentes
+    abnt-upper-cite=no      % DESATIVA caixa alta nas citações
+]{abntex2cite}
+\usepackage{hyperref}
+
+%\usepackage[hyphenbreaks]{breakurl}
+%\usepackage[num,overcite,'-emphasize=em]{abntex2cite}
+
+%% Codificação
+\usepackage[T1]{fontenc} 	% Codificação de saída
+
+%% Fonte
+\usepackage{times} 			% Times New Roman
+
+\usepackage{lastpage} 		% Usado pela Ficha catalográfica
+\usepackage{indentfirst} 	% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color} 				% Controle das cores
+\usepackage{microtype} 		% Para melhorias de justificação
+\usepackage{lscape} 			% Permite a criação de conteúdo em modo paisagem
+\usepackage{hyperref} 		% Criação de links
+\usepackage{etoolbox}
+
+%% Tabelas
+\usepackage{multirow}
+
+%% Equação
+\usepackage{amsmath}
+
+%% Sumário
+\usepackage{textcase}
+
+%% Imagens
+\usepackage{graphicx} % Inclusão de gráficos
+
+%% Tamanho e alinhamento das legendas
+\usepackage[
+	singlelinecheck=false,
+	justification=justified,
+	font=footnotesize
+	]
+	{caption}
+\usepackage{pdfpages}
+
+
+\usepackage{listings}
+
+\usepackage{url}
+\renewcommand{\UrlLeft}{}  % Remove o símbolo de abertura (por padrão é `<`)
+\renewcommand{\UrlRight}{} % Remove o símbolo de fechamento (por padrão é `>`)
+
+
+%Nome do autor
+% Especificidades para a entrada de autor pessoal: – sobrenome com indicativo de parentesco
+% Quando o autor é brasileiro, trate o grau de parentesco como parte do sobrenome.
+% Exemplo: Autor: Luís Fernando Carvalho Neto - Entrada: CARVALHO NETO, L. F.
+\autor{Aqui vai o nome do autor do TCC}
+\newcommand{\entradaAutor}{ULTIMOSOBRENOME, Nomes} % Sem ponto no final
+
+% Titulo do trabalho
+\titulo{Aqui vai o título do trabalho} %Título do trabalho
+\newcommand{\englishTitle}{Aqui vai o título do trabalho em inglês} %Título do trabalho em inglês
+\data{\today}			%Ano de publicação
+\local{Nova Friburgo}	%Local
+
+%% Membros da banca
+\newcommand{\membrobancaA}{Prof. Dr. Banca 1}
+\newcommand{\intituicaoBancaA}{Instituto Politécnico - UERJ}
+
+\newcommand{\membrobancaB}{Prof. Dr. Banca 2}
+\newcommand{\intituicaoBancaB}{Instituto Politécnico - UERJ}
+
+
+\input{config}		%Define as configurações do arquivo
+
+\begin{document}
+    \newpage
+    \pagenumbering{arabic}
+	
+    %Capa
+	\include{capa}
+	
+	%Folha de rosto	
+    \include{folhaderosto}
+	\imprimirfolhaderosto
+
+	%Catalogação Biblioteca
+	\include{catalogacao}
+	
+	%Folha de aprovação
+	\include{folhaaprovacao}
+
+	  \include{dedicatoria}
+	\include{agradecimentos}
+	  \include{epigrafe}
+	\include{resumo}
+	\include{abstract}
+	
+	%Lista de Figuras
+	\renewcommand*\listfigurename{Lista de Figuras}
+	\listoffigures*
+	\cleardoublepage
+
+ 	%Lista de Tabelas
+	\renewcommand*\listtablename{Lista de Tabelas}
+	\listoftables*
+	\cleardoublepage
+ 
+ % \cleardoublepage
+	%\include{abreviaturas}
+	\include{siglas}
+	%\include{simbolos}
+	
+	%Sumário
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage
+	
+	 % Elementos textuais
+	\textual
+	\include{introducao}
+	\include{cap1}
+	\include{cap2}
+	\include{cap3}
+	\include{cap4}
+ \include{conclusao}
+
+    \include{nocite}
+    \bibliography{tcc}
+	% Elementos pós-textuais
+	\postextual
+	% \include{glossario}
+
+	%\include{apendices}
+	%\include{anexos} 
+	
+	
+	\appendix
+
+% O algoritmo desenvolvido, na linguagem Python versão 3.7.13, está disponível no seguinte link – \textcolor{blue}{\href{https://colab.research.google.com/drive/15zD5uLvgFG42-VionRbaLIMLS6nAn-d3?usp=sharing}{Predição de casos de COVID-19 em Nova Friburgo}}  – de forma aberta, no Google Colaboratory, para fins de pesquisa e aprofundamento do estudo.
+    
+\end{document}
