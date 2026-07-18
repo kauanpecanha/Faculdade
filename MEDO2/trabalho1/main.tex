@@ -1,28 +1,64 @@
-\documentclass[12pt]{article}
-\usepackage{graphicx} % Required for inserting images
-% \usepackage[a4paper, total={3cm, 2cm}]{geometry}
-\usepackage{tgtermes}
-\usepackage{amsmath}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage{xurl}
-\usepackage{fancyhdr}
-\renewcommand{\headrulewidth}{0pt}
-\usepackage{listings}
-\usepackage{textcomp}
-\usepackage{xcolor}
-\usepackage{amssymb}
-% \usepackage{times}
-\usepackage[a4paper,
-            % bindingoffset=0.2in,
-            left=3cm,
-            right=2cm,
-            top=3cm,
-            bottom=2cm
-            % footskip=.25in
-            ]{geometry}
+\documentclass[
+    12pt,
+    oneside,
+    a4paper,
+    english,
+    brazilian,
+    chapter=TITLE,
+    sumario=tradicional
+]{abntex2}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{microtype}
 \usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{xurl}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+    hypertexnames=false,
+    pdftitle={Métodos Numéricos para Equações Diferenciais II - Trabalho 1},
+    pdfauthor={Kauan Peçanha Lira}
+}
+
+\graphicspath{{figures/}{./}}
+
+\setlrmarginsandblock{3cm}{2cm}{*}
+\setulmarginsandblock{3cm}{2cm}{*}
+\checkandfixthelayout
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0pt}
+\OnehalfSpacing
+
+\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\renewcommand{\ABNTEXsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+\setlength{\beforechapskip}{0pt}
+\setlength{\afterchapskip}{1.5\baselineskip}
+
+\newcommand{\nomedainstituicao}{UNIVERSIDADE DO ESTADO DO RIO DE JANEIRO}
+\newcommand{\nomedaunidade}{INSTITUTO POLITÉCNICO}
+\newcommand{\nomedocurso}{GRADUAÇÃO EM ENGENHARIA DE COMPUTAÇÃO}
+
+\titulo{Métodos Numéricos para Equações Diferenciais II\\Trabalho 1}
+\autor{Kauan Peçanha Lira}
+\local{Nova Friburgo}
+\data{2026}
+\tipotrabalho{Trabalho acadêmico}
+\preambulo{Trabalho apresentado à disciplina de Métodos Numéricos para
+Equações Diferenciais II, do curso de Engenharia de Computação do Instituto
+Politécnico da Universidade do Estado do Rio de Janeiro.}
 
 \lstset{
     language=Python,
@@ -38,44 +74,64 @@
     literate={°}{{\textdegree}}1
 }
 
-\usepackage{titlesec}
-
-\titleformat{\section}
-    {\normalfont\bfseries\fontsize{14}{16.8}\selectfont}
-    {\thesection}{1em}{}
-\titleformat{\subsection}
-    {\normalfont\bfseries\fontsize{13}{15.6}\selectfont}
-    {\thesubsection}{1em}{}
-
-\linespread{1.25}
-
 \begin{document}
-\thispagestyle{fancy}
-\fancyhead{}
+\selectlanguage{brazilian}
+\frenchspacing
 
-% \maketitle
-\begin{center}
-    \Large{
-        \textbf{Métodos Numéricos para Equações Diferenciais II}
+\begin{titlingpage}
+    \begin{center}
+        \begin{minipage}{0.18\textwidth}
+            \centering
+            \includegraphics[width=2.2cm]{uerj.png}
+        \end{minipage}%
+        \begin{minipage}{0.62\textwidth}
+            \centering
+            \textbf{\nomedainstituicao}\\
+            \rule{7cm}{0.4pt}\\
+            \textbf{\nomedaunidade\\\nomedocurso}
+        \end{minipage}%
+        \begin{minipage}{0.18\textwidth}
+            \centering
+            \includegraphics[width=2.8cm]{iprj.jpeg}
+        \end{minipage}
 
-        \textbf{
-            Trabalho 1}
+        \vspace*{4cm}
+        {\bfseries\large\imprimirautor\par}
+        \vspace*{3cm}
+        {\bfseries\large\imprimirtitulo\par}
+        \vfill
+        {\bfseries\large\imprimirlocal\\\imprimirdata\par}
+    \end{center}
+\end{titlingpage}
 
-        \vspace{120px}
-        \textbf{Soluções de Situações Problemas}
-    }
-\end{center}
-\vspace{120px}
+\begin{titlingpage}
+    \begin{center}
+        {\imprimirautor\par}
+        \vspace*{\fill}
+        {\bfseries\imprimirtitulo\par}
+        \vspace*{\fill}
+        \hspace{0.45\textwidth}
+        \begin{minipage}{0.5\textwidth}
+            \SingleSpacing
+            \imprimirpreambulo
 
-Kauan Peçanha Lira
+            \vspace{0.8cm}
+            Matrícula: 202110048911.
+        \end{minipage}\par
+        \vspace*{\fill}
+        {\imprimirlocal\\\imprimirdata\par}
+    \end{center}
+\end{titlingpage}
 
-Matrícula: 202110048911 \fancyfoot[C]{Nova Friburgo - 2026}
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
 
-\newpage
+\textual
 
-\section*{Lista 1 - Questão 1}
+\chapter{Lista 1 -- Questão 1}
 
-\subsection*{Enunciado}
+\section{Enunciado}
 
 Seja uma placa metálica que foi submetida ao aquecimento uniforme e encontra-se
 no regime estacionário. A influência da espessura na propagação térmica foi
@@ -123,7 +179,7 @@ das diferenças finitas para as seguintes situações.
 
 \newpage
 
-\subsection*{Solução}
+\section{Solução}
 
 % 
 
@@ -186,7 +242,7 @@ T[1:n - 1, 1:n - 1] = 60
 
 Esse valor serve apenas como estimativa inicial.
 
-\subsubsection*{Discretização dos nós internos}
+\subsection{Discretização dos nós internos}
 
 Nos nós internos, usam-se diferenças centrais para as derivadas de segunda
 ordem:
@@ -230,7 +286,7 @@ T[i, j] = (
 ) / 4
 \end{lstlisting}
 
-\subsubsection*{Condição de convecção}
+\subsection{Condição de convecção}
 
 Na borda direita, aplica-se a condição convectiva:
 
@@ -284,7 +340,7 @@ T[i, j] = (
 A borda permanece acima de $T_{\infty}=10\,^\circ$C porque recebe calor do
 interior da placa e o transfere ao ambiente por convecção.
 
-\subsubsection*{Processo iterativo}
+\subsection{Processo iterativo}
 
 O sistema é resolvido por Gauss--Seidel, usando cada novo valor assim que ele é
 calculado.
@@ -315,7 +371,7 @@ $0{,}01\,^\circ$C.
 
 Ao fim de cada iteração, as temperaturas prescritas são restabelecidas.
 
-\subsubsection*{Mapa de calor}
+\subsection{Mapa de calor}
 
 Após a convergência, a matriz é exibida em um mapa de calor:
 
@@ -331,7 +387,7 @@ plt.title("Mapa de Calor da Placa")
 plt.xlabel("x (m)")
 plt.ylabel("y (m)")
 plt.savefig(
-    "./mapa_calor.png",
+    "figures/mapa_calor.png",
     dpi=300,
     bbox_inches="tight"
 )
@@ -359,7 +415,7 @@ forneceria um campo mais suave e preciso.
 
 % 
 
-\section*{Lista 2 - Questão 1}
+\chapter{Lista 2 -- Questão 1}
 
 Considere a equação escalar de conservação sem fonte:
 \[
@@ -376,7 +432,7 @@ com
     \item Suponha $u(x,0) = u_0$. Verifique se a função constante $u(x, t) \equiv u_0$ satisfaz a equação e a condição inicial.
 \end{enumerate}
 
-\subsection*{Item 1}
+\section{Item 1}
 
 A função $f(u)$ é o \textbf{fluxo} de $u$: ela mede a taxa de passagem dessa
 quantidade por uma posição do domínio.
@@ -387,7 +443,7 @@ Neste caso,
 \]
 portanto, sua dependência em relação a $u$ é não linear.
 
-\subsection*{Item 2}
+\section{Item 2}
 
 No intervalo fixo
 \[
@@ -459,7 +515,7 @@ resulta em
 Logo, a variação da quantidade total no intervalo é dada pelo fluxo de entrada
 em $x=\alpha$ menos o de saída em $x=\beta$.
 
-\subsection*{Item 3}
+\section{Item 3}
 
 A condição inicial é
 \[
@@ -509,7 +565,7 @@ Conclui-se que
 
 \newpage
 
-\section*{Lista 2 - Questão 2}
+\chapter{Lista 2 -- Questão 2}
 
 Considere a equação de conservação com fonte:
 \[
@@ -522,7 +578,7 @@ Considere a equação de conservação com fonte:
     \item Explique como a função $g(u)$ altera a conservação da quantidade $u$.
 \end{enumerate}
 
-\subsection*{Item 1}
+\section{Item 1}
 
 $f(u)$ é o \textbf{fluxo} de $u$ através do domínio. Já $g(u)$ é uma
 \textbf{fonte} ou um \textbf{sumidouro}, responsável por gerar ou remover $u$
@@ -545,7 +601,7 @@ Fisicamente:
 Assim, $f(u)$ descreve o transporte pelas fronteiras, enquanto $g(u)$ descreve
 a produção ou o consumo interno.
 
-\subsection*{Item 2}
+\section{Item 2}
 
 Integrando
 \[
@@ -608,7 +664,7 @@ Isolando a derivada temporal, chega-se à forma integral:
 À direita estão, respectivamente, o fluxo de entrada, o fluxo de saída e a
 contribuição total da fonte no intervalo.
 
-\subsection*{Item 3}
+\section{Item 3}
 
 Seja a quantidade total no intervalo
 \[
@@ -654,9 +710,9 @@ há consumo líquido e $Q(t)$ diminui.
 Portanto, $g(u)$ torna a equação uma \textbf{lei de balanço}: além dos fluxos
 de fronteira, a variação total inclui o efeito interno da fonte.
 
-\section*{Lista 3 - Questão 1}
+\chapter{Lista 3 -- Questão 1}
 
-\subsection*{Enunciado}
+\section{Enunciado}
 
 Considere a seguinte equação diferencial parcial hiperbólica não homogênea:
 
@@ -684,7 +740,7 @@ Pede-se:
     \item realizar a análise física das ondas obtidas.
 \end{enumerate}
 
-\subsection*{Solução}
+\section{Solução}
 
 A equação tem a forma
 
@@ -805,7 +861,7 @@ Logo,
 
 Portanto, a expressão satisfaz a EDP e a condição inicial.
 
-\subsubsection*{Implementação da solução}
+\subsection{Implementação da solução}
 
 No código, a solução é definida por
 
@@ -835,7 +891,7 @@ for t in tempos:
     plt.plot(x, u(x, t), label=f"t = {t}")
 \end{lstlisting}
 
-\subsubsection*{Perfis da solução}
+\subsection{Perfis da solução}
 
 \begin{figure}[H]
     \centering
@@ -890,7 +946,7 @@ A tabela resume o deslocamento do vértice:
     \end{tabular}
 \end{table}
 
-\subsubsection*{Representação tridimensional}
+\subsection{Representação tridimensional}
 
 Para a visualização tridimensional, constrói-se uma malha em $x$ e $t$:
 
@@ -929,7 +985,7 @@ superficie = ax.plot_surface(
 A Figura~\ref{fig:lista3-superficie} reúne a evolução dos perfis: $x$ indica a
 posição, $t$ o tempo e o eixo vertical o valor de $u(x,t)$.
 
-\subsubsection*{Análise física}
+\subsection{Análise física}
 
 O termo de transporte
 
@@ -966,7 +1022,9 @@ Em síntese, há dois efeitos:
     \item elevação uniforme de uma unidade por unidade de tempo.
 \end{enumerate}
 
-\section*{Bibliografia}
+\postextual
+\chapter*{Referências}
+\addcontentsline{toc}{chapter}{REFERÊNCIAS}
 
 LEVEQUE, Randall J. \textit{Numerical Methods for Conservation Laws}. Zürich:
 Birkhäuser/ETH Zürich, 1990.

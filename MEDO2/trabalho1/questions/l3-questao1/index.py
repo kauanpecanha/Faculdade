@@ -1,6 +1,9 @@
-import os
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+FIGURES_DIR = Path(__file__).resolve().parents[2] / "figures"
+FIGURES_DIR.mkdir(exist_ok=True)
 
 def u(x: np.ndarray, t: float | np.ndarray) -> np.ndarray:
     """
@@ -16,7 +19,7 @@ def u(x: np.ndarray, t: float | np.ndarray) -> np.ndarray:
 
 
 def salvar_grafico(nome_arquivo: str) -> None:
-    caminho = os.path.join("graficos", nome_arquivo)
+    caminho = FIGURES_DIR / nome_arquivo
 
     plt.tight_layout()
     plt.savefig(caminho, dpi=300, bbox_inches="tight")

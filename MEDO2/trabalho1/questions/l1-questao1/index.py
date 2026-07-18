@@ -1,5 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+FIGURES_DIR = Path(__file__).resolve().parents[2] / "figures"
+FIGURES_DIR.mkdir(exist_ok=True)
 
 L = 0.1
 T_inf = 10
@@ -83,4 +87,4 @@ plt.title("Mapa de Calor da Placa")
 plt.xlabel("x (m)")
 plt.ylabel("y (m)")
 
-plt.savefig("./mapa_calor.png", dpi=300, bbox_inches="tight")
+plt.savefig(FIGURES_DIR / "mapa_calor.png", dpi=300, bbox_inches="tight")
