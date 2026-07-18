@@ -1,0 +1,977 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+% \usepackage[a4paper, total={3cm, 2cm}]{geometry}
+\usepackage{tgtermes}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amssymb}
+% \usepackage{times}
+\usepackage[a4paper,
+            % bindingoffset=0.2in,
+            left=3cm,
+            right=2cm,
+            top=3cm,
+            bottom=2cm
+            % footskip=.25in
+            ]{geometry}
+
+\usepackage{indentfirst}
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{teal},
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    literate={°}{{\textdegree}}1
+}
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+    {\normalfont\bfseries\fontsize{14}{16.8}\selectfont}
+    {\thesection}{1em}{}
+\titleformat{\subsection}
+    {\normalfont\bfseries\fontsize{13}{15.6}\selectfont}
+    {\thesubsection}{1em}{}
+
+\linespread{1.25}
+
+\begin{document}
+\thispagestyle{fancy}
+\fancyhead{}
+
+% \maketitle
+\begin{center}
+    \Large{
+        \textbf{Métodos Numéricos para Equações Diferenciais II}
+
+        \textbf{
+            Trabalho 1}
+
+        \vspace{120px}
+        \textbf{Soluções de Situações Problemas}
+    }
+\end{center}
+\vspace{120px}
+
+Kauan Peçanha Lira
+
+Matrícula: 202110048911 \fancyfoot[C]{Nova Friburgo - 2026}
+
+\newpage
+
+\section*{Lista 1 - Questão 1}
+
+\subsection*{Enunciado}
+
+Seja uma placa metálica que foi submetida ao aquecimento uniforme e encontra-se
+no regime estacionário. A influência da espessura na propagação térmica foi
+considerada nula, por ser diminuta em comparação com as outras dimensões.
+
+Realize a discretização da malha de cálculo utilizando o princípio do Método
+das diferenças finitas para as seguintes situações.
+
+\[
+    \frac{\partial ^ 2 T}{\partial x ^ 2} + \frac{\partial ^ 2 T}{\partial y ^ 2} = 0
+\]
+
+\[
+    H = L = 0{,}1\,\mathrm{m}
+\]
+
+\[
+    T_{\infty} = 10\,^\circ\mathrm{C}
+\]
+
+\[
+    K = 150\,\frac{\mathrm{W}}{\mathrm{m}\cdot\mathrm{K}}
+\]
+
+\[
+    h = 450\,\frac{\mathrm{W}}{\mathrm{m}^2\cdot\mathrm{K}}
+\]
+
+\[
+    \text{Erro} = 1\%
+\]
+
+\[
+    N_x = N_y = 10
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{lista1-questao1.png}
+    \caption{Configuração da placa metálica}
+    \label{fig:lista1-configuracao}
+
+    {\small Fonte: slides do professor.\par}
+\end{figure}
+
+\newpage
+
+\subsection*{Solução}
+
+% 
+
+Em regime estacionário e sem geração interna de calor, a temperatura na placa
+é regida pela equação de Laplace:
+
+\[
+    \frac{\partial^2 T}{\partial x^2}
+    +
+    \frac{\partial^2 T}{\partial y^2}
+    = 0.
+\]
+
+Adota-se uma malha uniforme com $N_x=N_y=10$ nós. Os espaçamentos são:
+
+\[
+    \Delta x = \frac{L}{N_x-1},
+    \qquad
+    \Delta y = \frac{H}{N_y-1}.
+\]
+
+Para $L=H=0{,}1$ m:
+
+\[
+    \Delta x = \Delta y
+    =
+    \frac{0{,}1}{9}
+    \approx 0{,}0111 \text{ m}.
+\]
+
+As temperaturas são armazenadas em uma matriz $10 \times 10$:
+
+\begin{lstlisting}[language=Python]
+T = np.zeros((n, n))
+\end{lstlisting}
+
+As condições de contorno são:
+
+\begin{itemize}
+    \item parede esquerda: $T=100\,^\circ$C;
+    \item parede superior: $T=75\,^\circ$C;
+    \item parede inferior: $T=50\,^\circ$C;
+    \item parede direita: condição de convecção com o meio externo.
+\end{itemize}
+
+No código, elas são definidas por:
+
+\begin{lstlisting}[language=Python]
+T[n - 1, :] = 50
+T[:, 0] = 100
+T[0, :] = 75
+T[0, 0] = 100
+\end{lstlisting}
+
+Para iniciar as iterações, atribui-se $60\,^\circ$C aos nós internos:
+
+\begin{lstlisting}[language=Python]
+T[1:n - 1, 1:n - 1] = 60
+\end{lstlisting}
+
+Esse valor serve apenas como estimativa inicial.
+
+\subsubsection*{Discretização dos nós internos}
+
+Nos nós internos, usam-se diferenças centrais para as derivadas de segunda
+ordem:
+
+\[
+    \frac{\partial^2 T}{\partial x^2}
+    \approx
+    \frac{T_{i,j+1}-2T_{i,j}+T_{i,j-1}}{\Delta x^2},
+\]
+
+\[
+    \frac{\partial^2 T}{\partial y^2}
+    \approx
+    \frac{T_{i+1,j}-2T_{i,j}+T_{i-1,j}}{\Delta y^2}.
+\]
+
+Como $\Delta x=\Delta y$, a substituição na equação de Laplace resulta em:
+
+\[
+    T_{i,j}
+    =
+    \frac{
+        T_{i+1,j}
+        +
+        T_{i-1,j}
+        +
+        T_{i,j+1}
+        +
+        T_{i,j-1}
+    }{4}.
+\]
+
+Assim, cada nó interno recebe a média dos quatro vizinhos:
+
+\begin{lstlisting}[language=Python]
+T[i, j] = (
+    T[i + 1, j]
+    + T[i - 1, j]
+    + T[i, j + 1]
+    + T[i, j - 1]
+) / 4
+\end{lstlisting}
+
+\subsubsection*{Condição de convecção}
+
+Na borda direita, aplica-se a condição convectiva:
+
+\[
+    -K\frac{\partial T}{\partial x}
+    =
+    h(T-T_{\infty}),
+\]
+
+com $h=450$ W/(m$^2$K).
+
+A derivada na fronteira é aproximada por uma diferença regressiva:
+
+\[
+    \frac{\partial T}{\partial x}
+    \approx
+    \frac{T_b-T_p}{\Delta x},
+\]
+
+em que $T_b$ é a temperatura na borda e $T_p$, a do nó adjacente interno.
+
+Substituindo essa aproximação:
+
+\[
+    -K\frac{T_b-T_p}{\Delta x}
+    =
+    h(T_b-T_{\infty}).
+\]
+
+Ao isolar $T_b$:
+
+\[
+    T_b
+    =
+    \frac{
+        \dfrac{K}{\Delta x}T_p+hT_{\infty}
+    }{
+        \dfrac{K}{\Delta x}+h
+    }.
+\]
+
+Essa expressão atualiza os nós intermediários da borda direita:
+
+\begin{lstlisting}[language=Python]
+T[i, j] = (
+    ((K / step) / ((K / step) + h)) * T[i, j - 1]
+    + (h * T_inf) / ((K / step) + h)
+)
+\end{lstlisting}
+
+A borda permanece acima de $T_{\infty}=10\,^\circ$C porque recebe calor do
+interior da placa e o transfere ao ambiente por convecção.
+
+\subsubsection*{Processo iterativo}
+
+O sistema é resolvido por Gauss--Seidel, usando cada novo valor assim que ele é
+calculado.
+
+As iterações terminam quando a maior variação entre valores consecutivos fica
+abaixo da tolerância:
+
+\[
+    \left|
+    T_{i,j}^{\text{novo}}
+    -
+    T_{i,j}^{\text{anterior}}
+    \right|
+    \leq 0{,}01.
+\]
+
+O erro é calculado por:
+
+\begin{lstlisting}[language=Python]
+diferenca = abs(T[i, j] - T_old)
+
+if diferenca > erro_max:
+    erro_max = diferenca
+\end{lstlisting}
+
+Embora o enunciado indique erro de $1\%$, o código adota tolerância absoluta de
+$0{,}01\,^\circ$C.
+
+Ao fim de cada iteração, as temperaturas prescritas são restabelecidas.
+
+\subsubsection*{Mapa de calor}
+
+Após a convergência, a matriz é exibida em um mapa de calor:
+
+\begin{lstlisting}[language=Python]
+plt.imshow(
+    T,
+    origin="upper",
+    extent=[0, L, 0, H]
+)
+
+plt.colorbar(label="Temperatura (°C)")
+plt.title("Mapa de Calor da Placa")
+plt.xlabel("x (m)")
+plt.ylabel("y (m)")
+plt.savefig(
+    "./mapa_calor.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{mapa_calor.png}
+    \caption{Mapa de calor da distribuição de temperatura na placa}
+    \label{fig:lista1-mapa-calor}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Na Figura~\ref{fig:lista1-mapa-calor}, as maiores temperaturas aparecem perto
+da borda esquerda, mantida a
+$100\,^\circ$C, e as menores, junto à borda inferior, a $50\,^\circ$C. A partir
+da borda superior, fixada em $75\,^\circ$C, a temperatura cai em direção à
+direita devido à convecção com o ambiente a $10\,^\circ$C.
+
+A condução produz uma transição contínua entre as fronteiras, com gradientes
+mais intensos nos cantos que unem temperaturas distintas. Como a malha tem
+apenas $10 \times 10$ nós, as faixas de cor ficam marcadas; uma malha mais fina
+forneceria um campo mais suave e preciso.
+
+% 
+
+\section*{Lista 2 - Questão 1}
+
+Considere a equação escalar de conservação sem fonte:
+\[
+    u_t + f(u)_x = 0,
+\]
+com
+\[
+    f(u)=\frac{1}{2}u^2.
+\]
+
+\begin{enumerate}
+    \item Interprete fisicamente o termo $f(u)$
+    \item Escreva a forma integral da equação em um intervalo fixo $I=[\alpha, \beta]$
+    \item Suponha $u(x,0) = u_0$. Verifique se a função constante $u(x, t) \equiv u_0$ satisfaz a equação e a condição inicial.
+\end{enumerate}
+
+\subsection*{Item 1}
+
+A função $f(u)$ é o \textbf{fluxo} de $u$: ela mede a taxa de passagem dessa
+quantidade por uma posição do domínio.
+
+Neste caso,
+\[
+    f(u)=\frac{1}{2}u^2,
+\]
+portanto, sua dependência em relação a $u$ é não linear.
+
+\subsection*{Item 2}
+
+No intervalo fixo
+\[
+    I=[\alpha,\beta].
+\]
+
+A integração da equação fornece
+\[
+    \int_{\alpha}^{\beta}u_t(x,t)\,dx
+    +
+    \int_{\alpha}^{\beta}f(u(x,t))_x\,dx
+    =
+    0.
+\]
+
+Como $\alpha$ e $\beta$ são fixos, aplica-se a regra de Leibniz:
+\[
+    \int_{\alpha}^{\beta}u_t(x,t)\,dx
+    =
+    \frac{d}{dt}
+    \int_{\alpha}^{\beta}u(x,t)\,dx.
+\]
+
+Pelo Teorema Fundamental do Cálculo,
+\[
+    \int_{\alpha}^{\beta}f(u(x,t))_x\,dx
+    =
+    f(u(\beta,t))-f(u(\alpha,t)).
+\]
+
+Desse modo,
+\[
+    \frac{d}{dt}
+    \int_{\alpha}^{\beta}u(x,t)\,dx
+    +
+    f(u(\beta,t))
+    -
+    f(u(\alpha,t))
+    =
+    0.
+\]
+
+A forma integral é, portanto,
+\[
+    \boxed{
+        \frac{d}{dt}
+        \int_{\alpha}^{\beta}u(x,t)\,dx
+        =
+        f(u(\alpha,t))-f(u(\beta,t))
+    }.
+\]
+
+Como
+\[
+    f(u)=\frac{1}{2}u^2,
+\]
+resulta em
+\[
+    \boxed{
+        \frac{d}{dt}
+        \int_{\alpha}^{\beta}u(x,t)\,dx
+        =
+        \frac{1}{2}u(\alpha,t)^2
+        -
+        \frac{1}{2}u(\beta,t)^2
+    }.
+\]
+
+Logo, a variação da quantidade total no intervalo é dada pelo fluxo de entrada
+em $x=\alpha$ menos o de saída em $x=\beta$.
+
+\subsection*{Item 3}
+
+A condição inicial é
+\[
+    u(x,0)=u_0,
+\]
+com $u_0$ constante.
+
+Toma-se
+\[
+    u(x,t)=u_0.
+\]
+
+Como a função não varia em $x$ nem em $t$,
+\[
+    u_t(x,t)=0
+\]
+e
+\[
+    f(u(x,t))
+    =
+    f(u_0)
+    =
+    \frac{1}{2}u_0^2.
+\]
+
+e, como $f(u_0)$ também não varia em $x$,
+\[
+    f(u(x,t))_x=0.
+\]
+
+Assim,
+\[
+    u_t+f(u)_x=0+0=0.
+\]
+
+Para $t=0$,
+\[
+    u(x,0)=u_0,
+\]
+o que também satisfaz a condição inicial.
+
+Conclui-se que
+\[
+    \boxed{u(x,t)=u_0}
+\]
+é a solução constante do problema.
+
+\newpage
+
+\section*{Lista 2 - Questão 2}
+
+Considere a equação de conservação com fonte:
+\[
+    u_t+f(u)_x=g(u).
+\]
+
+\begin{enumerate}
+    \item Interprete os termos $f(u)$ e $g(u)$ no contexto físico.
+    \item Escreva a forma integral da equação para um intervalo $[\alpha, \beta]$.
+    \item Explique como a função $g(u)$ altera a conservação da quantidade $u$.
+\end{enumerate}
+
+\subsection*{Item 1}
+
+$f(u)$ é o \textbf{fluxo} de $u$ através do domínio. Já $g(u)$ é uma
+\textbf{fonte} ou um \textbf{sumidouro}, responsável por gerar ou remover $u$
+no interior do domínio.
+
+Fisicamente:
+
+\[
+    g(u)>0
+    \quad\Longrightarrow\quad
+    \text{há produção da quantidade }u;
+\]
+
+\[
+    g(u)<0
+    \quad\Longrightarrow\quad
+    \text{há remoção ou consumo da quantidade }u;
+\]
+
+Assim, $f(u)$ descreve o transporte pelas fronteiras, enquanto $g(u)$ descreve
+a produção ou o consumo interno.
+
+\subsection*{Item 2}
+
+Integrando
+\[
+    u_t+f(u)_x=g(u)
+\]
+no intervalo fixo
+\[
+    I=[\alpha,\beta],
+\]
+obtém-se
+\[
+    \int_{\alpha}^{\beta}u_t(x,t)\,dx
+    +
+    \int_{\alpha}^{\beta}f(u(x,t))_x\,dx
+    =
+    \int_{\alpha}^{\beta}g(u(x,t))\,dx.
+\]
+
+Como os limites são fixos,
+\[
+    \int_{\alpha}^{\beta}u_t(x,t)\,dx
+    =
+    \frac{d}{dt}
+    \int_{\alpha}^{\beta}u(x,t)\,dx.
+\]
+
+Pelo Teorema Fundamental do Cálculo,
+\[
+    \int_{\alpha}^{\beta}f(u(x,t))_x\,dx
+    =
+    f(u(\beta,t))-f(u(\alpha,t)).
+\]
+
+Portanto,
+\[
+    \frac{d}{dt}
+    \int_{\alpha}^{\beta}u(x,t)\,dx
+    +
+    f(u(\beta,t))
+    -
+    f(u(\alpha,t))
+    =
+    \int_{\alpha}^{\beta}g(u(x,t))\,dx.
+\]
+
+Isolando a derivada temporal, chega-se à forma integral:
+\[
+    \boxed{
+        \frac{d}{dt}
+        \int_{\alpha}^{\beta}u(x,t)\,dx
+        =
+        f(u(\alpha,t))
+        -
+        f(u(\beta,t))
+        +
+        \int_{\alpha}^{\beta}g(u(x,t))\,dx
+    }.
+\]
+
+À direita estão, respectivamente, o fluxo de entrada, o fluxo de saída e a
+contribuição total da fonte no intervalo.
+
+\subsection*{Item 3}
+
+Seja a quantidade total no intervalo
+\[
+    Q(t)=\int_{\alpha}^{\beta}u(x,t)\,dx.
+\]
+
+Então,
+\[
+    \frac{dQ}{dt}
+    =
+    f(u(\alpha,t))
+    -
+    f(u(\beta,t))
+    +
+    \int_{\alpha}^{\beta}g(u(x,t))\,dx.
+\]
+
+Sem fontes, isto é, para
+\[
+    g(u)=0,
+\]
+a variação total depende apenas dos fluxos nas extremidades:
+\[
+    \frac{dQ}{dt}
+    =
+    f(u(\alpha,t))-f(u(\beta,t)).
+\]
+
+Para $g(u)\neq 0$, também há geração ou remoção no interior.
+
+Se
+\[
+    \int_{\alpha}^{\beta}g(u(x,t))\,dx>0,
+\]
+há produção líquida e $Q(t)$ aumenta.
+
+Se
+\[
+    \int_{\alpha}^{\beta}g(u(x,t))\,dx<0,
+\]
+há consumo líquido e $Q(t)$ diminui.
+
+Portanto, $g(u)$ torna a equação uma \textbf{lei de balanço}: além dos fluxos
+de fronteira, a variação total inclui o efeito interno da fonte.
+
+\section*{Lista 3 - Questão 1}
+
+\subsection*{Enunciado}
+
+Considere a seguinte equação diferencial parcial hiperbólica não homogênea:
+
+\[
+    \frac{\partial u}{\partial t}
+    +
+    3\frac{\partial u}{\partial x}
+    =
+    1,
+    \qquad x \in \mathbb{R}, \quad t>0,
+\]
+
+sujeita à condição inicial
+
+\[
+    u(x,0)=x^2,
+    \qquad x\in\mathbb{R}.
+\]
+
+Pede-se:
+
+\begin{enumerate}
+    \item apresentar a solução da EDP hiperbólica não homogênea;
+    \item representar graficamente as ondas formadas para diferentes valores de $t$;
+    \item realizar a análise física das ondas obtidas.
+\end{enumerate}
+
+\subsection*{Solução}
+
+A equação tem a forma
+
+\[
+    u_t+a u_x=f,
+\]
+
+com velocidade de transporte constante
+
+\[
+    a=3,
+\]
+
+e fonte
+
+\[
+    f=1.
+\]
+
+Pelo método das características, considera-se uma curva $x=x(t)$. Nela, a
+regra da cadeia fornece
+
+\[
+    \frac{d}{dt}u(x(t),t)
+    =
+    u_t
+    +
+    \frac{dx}{dt}u_x.
+\]
+
+Para coincidir com a EDP, define-se
+
+\[
+    \frac{dx}{dt}=3.
+\]
+
+Se a característica parte de $x_0$ em $t=0$, a integração resulta em
+
+\[
+    x(t)=x_0+3t.
+\]
+
+Logo,
+
+\[
+    x_0=x-3t.
+\]
+
+Ao longo de cada característica, resta a EDO
+
+\[
+    \frac{du}{dt}=1.
+\]
+
+Sua integração dá
+
+\[
+    u=t+C.
+\]
+
+A condição inicial determina $C$:
+
+\[
+    u(x_0,0)=x_0^2,
+\]
+
+assim,
+
+\[
+    C=x_0^2.
+\]
+
+Em cada característica,
+
+\[
+    u(x,t)=x_0^2+t.
+\]
+
+Substituindo $x_0=x-3t$, obtém-se:
+
+\[
+    \boxed{
+        u(x,t)=(x-3t)^2+t
+    }.
+\]
+
+A condição inicial é satisfeita, pois
+
+\[
+    u(x,0)
+    =
+    (x-3\cdot 0)^2+0
+    =
+    x^2.
+\]
+
+Para verificar a EDP, calculam-se
+
+\[
+    u_t=-6(x-3t)+1
+\]
+
+e
+
+\[
+    u_x=2(x-3t).
+\]
+
+Logo,
+
+\[
+    u_t+3u_x
+    =
+    -6(x-3t)+1+6(x-3t)
+    =
+    1.
+\]
+
+Portanto, a expressão satisfaz a EDP e a condição inicial.
+
+\subsubsection*{Implementação da solução}
+
+No código, a solução é definida por
+
+\begin{lstlisting}[language=Python]
+def u(x, t):
+    return (x - 3 * t) ** 2 + t
+\end{lstlisting}
+
+O intervalo espacial $[-10,20]$ é dividido em mil pontos:
+
+\begin{lstlisting}[language=Python]
+x = np.linspace(-10, 20, 1000)
+\end{lstlisting}
+
+Consideram-se os instantes
+
+\[
+    t=0,\quad 1,\quad 2,\quad 3,\quad 4.
+\]
+
+Para cada um deles, calcula-se e representa-se $u(x,t)$:
+
+\begin{lstlisting}[language=Python]
+tempos = [0, 1, 2, 3, 4]
+
+for t in tempos:
+    plt.plot(x, u(x, t), label=f"t = {t}")
+\end{lstlisting}
+
+\subsubsection*{Perfis da solução}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]
+    {01_solucao_edp.png}
+    \caption{Solução da EDP para diferentes valores de tempo}
+    \label{fig:lista3-perfis}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Na Figura~\ref{fig:lista3-perfis}, cada instante corresponde a uma parábola:
+
+\[
+    u(x,t)=(x-3t)^2+t.
+\]
+
+O vértice ocorre quando
+
+\[
+    x-3t=0.
+\]
+
+Sua posição e seu valor mínimo são, respectivamente,
+
+\[
+    x_{\mathrm{v}}=3t
+\]
+
+e
+
+\[
+    u_{\mathrm{v}}=t.
+\]
+
+A tabela resume o deslocamento do vértice:
+
+\begin{table}[H]
+    \centering
+    \caption{Posição e valor do vértice em diferentes instantes}
+    \label{tab:lista3-vertices}
+    \begin{tabular}{ccc}
+        \hline
+        $t$ & $x_{\mathrm{v}}=3t$ & $u_{\mathrm{v}}=t$ \\
+        \hline
+        0   & 0                   & 0                  \\
+        1   & 3                   & 1                  \\
+        2   & 6                   & 2                  \\
+        3   & 9                   & 3                  \\
+        4   & 12                  & 4                  \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{Representação tridimensional}
+
+Para a visualização tridimensional, constrói-se uma malha em $x$ e $t$:
+
+\begin{lstlisting}[language=Python]
+x_superficie = np.linspace(-10, 20, 300)
+t_superficie = np.linspace(0, 5, 200)
+
+X, T = np.meshgrid(x_superficie, t_superficie)
+U = u(X, T)
+\end{lstlisting}
+
+A matriz $U$ reúne a solução nos pontos da malha e define a superfície:
+
+\begin{lstlisting}[language=Python]
+fig = plt.figure(figsize=(11, 7))
+ax = fig.add_subplot(111, projection="3d")
+
+superficie = ax.plot_surface(
+    X,
+    T,
+    U,
+    cmap="viridis"
+)
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]
+    {02_representacao_grafica.png}
+    \caption{Representação tridimensional da solução $u(x,t)$}
+    \label{fig:lista3-superficie}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+A Figura~\ref{fig:lista3-superficie} reúne a evolução dos perfis: $x$ indica a
+posição, $t$ o tempo e o eixo vertical o valor de $u(x,t)$.
+
+\subsubsection*{Análise física}
+
+O termo de transporte
+
+\[
+    3u_x
+\]
+
+desloca o perfil para a direita com velocidade constante $3$.
+
+O termo $(x-3t)^2$ representa o deslocamento horizontal do perfil inicial
+$x^2$. Em um tempo $t$, cada ponto percorre
+
+\[
+    \Delta x=3t.
+\]
+
+A fonte constante $1$ acrescenta $t$ à solução. Assim, enquanto se desloca para
+a direita, a parábola também sobe uniformemente.
+
+A forma e a abertura permanecem iguais porque todas as características têm a
+mesma velocidade:
+
+\[
+    x=x_0+3t.
+\]
+
+Como essas retas são paralelas, não há cruzamentos, choques ou
+descontinuidades.
+
+Em síntese, há dois efeitos:
+
+\begin{enumerate}
+    \item deslocamento da parábola para a direita com velocidade $3$;
+    \item elevação uniforme de uma unidade por unidade de tempo.
+\end{enumerate}
+
+\section*{Bibliografia}
+
+LEVEQUE, Randall J. \textit{Numerical Methods for Conservation Laws}. Zürich:
+Birkhäuser/ETH Zürich, 1990.
+
+CUNHA, Maria Cristina C. \textit{Métodos Numéricos}. Campinas: Editora da
+UNICAMP, 2000.
+
+\end{document}
