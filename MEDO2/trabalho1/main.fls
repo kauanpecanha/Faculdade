@@ -2,7 +2,7 @@ PWD /home/kauan/code/Faculdade/MEDO2/trabalho1
 INPUT /usr/local/texlive/2026/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT main.tex
+INPUT /home/kauan/code/Faculdade/MEDO2/trabalho1/main.tex
 OUTPUT main.log
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/abntex2/abntex2.cls
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/abntex2/abntex2.cls
@@ -316,6 +316,18 @@ INPUT ./figures/02_representacao_grafica.png
 INPUT ./figures/02_representacao_grafica.png
 INPUT ./figures/02_representacao_grafica.png
 INPUT ./figures/02_representacao_grafica.png
+INPUT ./figures/03_solucao_questao2.png
+INPUT ./figures/03_solucao_questao2.png
+INPUT ./figures/03_solucao_questao2.png
+INPUT ./figures/03_solucao_questao2.png
+INPUT ./figures/04_caracteristicas_questao2.png
+INPUT ./figures/04_caracteristicas_questao2.png
+INPUT ./figures/04_caracteristicas_questao2.png
+INPUT ./figures/04_caracteristicas_questao2.png
+INPUT ./figures/05_superficie_questao2.png
+INPUT ./figures/05_superficie_questao2.png
+INPUT ./figures/05_superficie_questao2.png
+INPUT ./figures/05_superficie_questao2.png
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
@@ -325,6 +337,7 @@ INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb

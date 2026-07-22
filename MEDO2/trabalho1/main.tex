@@ -417,6 +417,8 @@ forneceria um campo mais suave e preciso.
 
 \chapter{Lista 2 -- Questão 1}
 
+\section{Enunciado}
+
 Considere a equação escalar de conservação sem fonte:
 \[
     u_t + f(u)_x = 0,
@@ -564,151 +566,6 @@ Conclui-se que
 é a solução constante do problema.
 
 \newpage
-
-\chapter{Lista 2 -- Questão 2}
-
-Considere a equação de conservação com fonte:
-\[
-    u_t+f(u)_x=g(u).
-\]
-
-\begin{enumerate}
-    \item Interprete os termos $f(u)$ e $g(u)$ no contexto físico.
-    \item Escreva a forma integral da equação para um intervalo $[\alpha, \beta]$.
-    \item Explique como a função $g(u)$ altera a conservação da quantidade $u$.
-\end{enumerate}
-
-\section{Item 1}
-
-$f(u)$ é o \textbf{fluxo} de $u$ através do domínio. Já $g(u)$ é uma
-\textbf{fonte} ou um \textbf{sumidouro}, responsável por gerar ou remover $u$
-no interior do domínio.
-
-Fisicamente:
-
-\[
-    g(u)>0
-    \quad\Longrightarrow\quad
-    \text{há produção da quantidade }u;
-\]
-
-\[
-    g(u)<0
-    \quad\Longrightarrow\quad
-    \text{há remoção ou consumo da quantidade }u;
-\]
-
-Assim, $f(u)$ descreve o transporte pelas fronteiras, enquanto $g(u)$ descreve
-a produção ou o consumo interno.
-
-\section{Item 2}
-
-Integrando
-\[
-    u_t+f(u)_x=g(u)
-\]
-no intervalo fixo
-\[
-    I=[\alpha,\beta],
-\]
-obtém-se
-\[
-    \int_{\alpha}^{\beta}u_t(x,t)\,dx
-    +
-    \int_{\alpha}^{\beta}f(u(x,t))_x\,dx
-    =
-    \int_{\alpha}^{\beta}g(u(x,t))\,dx.
-\]
-
-Como os limites são fixos,
-\[
-    \int_{\alpha}^{\beta}u_t(x,t)\,dx
-    =
-    \frac{d}{dt}
-    \int_{\alpha}^{\beta}u(x,t)\,dx.
-\]
-
-Pelo Teorema Fundamental do Cálculo,
-\[
-    \int_{\alpha}^{\beta}f(u(x,t))_x\,dx
-    =
-    f(u(\beta,t))-f(u(\alpha,t)).
-\]
-
-Portanto,
-\[
-    \frac{d}{dt}
-    \int_{\alpha}^{\beta}u(x,t)\,dx
-    +
-    f(u(\beta,t))
-    -
-    f(u(\alpha,t))
-    =
-    \int_{\alpha}^{\beta}g(u(x,t))\,dx.
-\]
-
-Isolando a derivada temporal, chega-se à forma integral:
-\[
-    \boxed{
-        \frac{d}{dt}
-        \int_{\alpha}^{\beta}u(x,t)\,dx
-        =
-        f(u(\alpha,t))
-        -
-        f(u(\beta,t))
-        +
-        \int_{\alpha}^{\beta}g(u(x,t))\,dx
-    }.
-\]
-
-À direita estão, respectivamente, o fluxo de entrada, o fluxo de saída e a
-contribuição total da fonte no intervalo.
-
-\section{Item 3}
-
-Seja a quantidade total no intervalo
-\[
-    Q(t)=\int_{\alpha}^{\beta}u(x,t)\,dx.
-\]
-
-Então,
-\[
-    \frac{dQ}{dt}
-    =
-    f(u(\alpha,t))
-    -
-    f(u(\beta,t))
-    +
-    \int_{\alpha}^{\beta}g(u(x,t))\,dx.
-\]
-
-Sem fontes, isto é, para
-\[
-    g(u)=0,
-\]
-a variação total depende apenas dos fluxos nas extremidades:
-\[
-    \frac{dQ}{dt}
-    =
-    f(u(\alpha,t))-f(u(\beta,t)).
-\]
-
-Para $g(u)\neq 0$, também há geração ou remoção no interior.
-
-Se
-\[
-    \int_{\alpha}^{\beta}g(u(x,t))\,dx>0,
-\]
-há produção líquida e $Q(t)$ aumenta.
-
-Se
-\[
-    \int_{\alpha}^{\beta}g(u(x,t))\,dx<0,
-\]
-há consumo líquido e $Q(t)$ diminui.
-
-Portanto, $g(u)$ torna a equação uma \textbf{lei de balanço}: além dos fluxos
-de fronteira, a variação total inclui o efeito interno da fonte.
 
 \chapter{Lista 3 -- Questão 1}
 
@@ -1021,6 +878,577 @@ Em síntese, há dois efeitos:
     \item deslocamento da parábola para a direita com velocidade $3$;
     \item elevação uniforme de uma unidade por unidade de tempo.
 \end{enumerate}
+
+\newpage
+
+\chapter{Lista 3 -- Questão 2}
+
+\section{Enunciado}
+
+Considere a seguinte equação diferencial parcial hiperbólica homogênea:
+
+\[
+    \frac{\partial u}{\partial t}
+    +
+    a(x,t)\frac{\partial u}{\partial x}
+    =
+    0,
+    \qquad x\in\mathbb{R}, \quad t>0,
+\]
+
+sujeita à condição inicial
+
+\[
+    u(x,0)=u_0(x),
+    \qquad x\in\mathbb{R}.
+\]
+
+Pede-se:
+
+\begin{enumerate}
+    \item apresentar a solução da EDP hiperbólica homogênea;
+    \item representar graficamente as ondas formadas para diferentes valores de $t$;
+    \item realizar a análise física das ondas obtidas.
+\end{enumerate}
+
+\section{Solução}
+
+A equação considerada possui a forma
+
+\[
+    u_t+a(x,t)u_x=0.
+\]
+
+O coeficiente $a(x,t)$ representa a velocidade de transporte da informação.
+Diferentemente do caso em que a velocidade é constante, ela pode depender da
+posição $x$ e do tempo $t$.
+
+Pelo método das características, considera-se uma curva
+
+\[
+    x=X(t;x_0),
+\]
+
+que parte do ponto $x_0$ no instante inicial:
+
+\[
+    X(0;x_0)=x_0.
+\]
+
+Ao longo dessa curva, a regra da cadeia fornece
+
+\[
+    \frac{d}{dt}u(X(t;x_0),t)
+    =
+    u_t(X(t;x_0),t)
+    +
+    \frac{dX}{dt}u_x(X(t;x_0),t).
+\]
+
+Para que essa expressão coincida com a EDP, define-se a equação
+característica
+
+\[
+    \frac{dX}{dt}
+    =
+    a(X(t;x_0),t).
+\]
+
+Dessa maneira,
+
+\[
+    \frac{d}{dt}u(X(t;x_0),t)
+    =
+    u_t+a(x,t)u_x.
+\]
+
+Como a equação é homogênea,
+
+\[
+    u_t+a(x,t)u_x=0,
+\]
+
+obtém-se
+
+\[
+    \frac{d}{dt}u(X(t;x_0),t)=0.
+\]
+
+Portanto, a solução permanece constante ao longo de cada curva
+característica:
+
+\[
+    u(X(t;x_0),t)
+    =
+    u(X(0;x_0),0).
+\]
+
+Como
+
+\[
+    X(0;x_0)=x_0
+\]
+
+e a condição inicial é
+
+\[
+    u(x_0,0)=u_0(x_0),
+\]
+
+segue que
+
+\[
+    u(X(t;x_0),t)=u_0(x_0).
+\]
+
+Para determinar a solução em um ponto $(x,t)$, deve-se encontrar o ponto
+inicial $x_0$ da característica que passa por esse ponto.
+
+Se a relação
+
+\[
+    x=X(t;x_0)
+\]
+
+puder ser invertida em relação a $x_0$, escreve-se
+
+\[
+    x_0=X^{-1}(x,t).
+\]
+
+Assim, a solução geral é
+
+\[
+    \boxed{
+        u(x,t)=u_0\left(X^{-1}(x,t)\right)
+    }.
+\]
+
+Essa expressão mostra que o valor de $u$ em $(x,t)$ é determinado pelo valor
+inicial localizado no ponto de origem da característica.
+
+\subsection{Caso particular: velocidade constante}
+
+Como o enunciado não fornece uma expressão específica para $a(x,t)$ nem para
+$u_0(x)$, não é possível produzir um único gráfico numérico para o problema
+geral.
+
+Para ilustrar graficamente o comportamento da solução, considera-se o caso
+particular
+
+\[
+    a(x,t)=c,
+\]
+
+em que $c$ é uma constante.
+
+A equação característica torna-se
+
+\[
+    \frac{dX}{dt}=c.
+\]
+
+Integrando e utilizando a condição
+
+\[
+    X(0;x_0)=x_0,
+\]
+
+obtém-se
+
+\[
+    X(t;x_0)=x_0+ct.
+\]
+
+Logo,
+
+\[
+    x=x_0+ct
+\]
+
+e, isolando $x_0$,
+
+\[
+    x_0=x-ct.
+\]
+
+Como $u$ é constante ao longo das características,
+
+\[
+    u(x,t)=u_0(x_0).
+\]
+
+Substituindo $x_0=x-ct$, resulta em
+
+\[
+    \boxed{
+        u(x,t)=u_0(x-ct)
+    }.
+\]
+
+Portanto, quando a velocidade é constante, a solução corresponde a uma
+translação do perfil inicial.
+
+\subsection{Exemplo utilizado na representação gráfica}
+
+Para a construção dos gráficos, considera-se
+
+\[
+    c=2
+\]
+
+e o perfil inicial
+
+\[
+    u_0(x)=e^{-x^2}.
+\]
+
+A EDP utilizada no exemplo é, portanto,
+
+\[
+    u_t+2u_x=0,
+\]
+
+com condição inicial
+
+\[
+    u(x,0)=e^{-x^2}.
+\]
+
+Aplicando a solução do caso constante,
+
+\[
+    u(x,t)=u_0(x-2t),
+\]
+
+obtém-se
+
+\[
+    \boxed{
+        u(x,t)=e^{-(x-2t)^2}
+    }.
+\]
+
+A condição inicial é satisfeita, pois
+
+\[
+    u(x,0)
+    =
+    e^{-(x-2\cdot 0)^2}
+    =
+    e^{-x^2}.
+\]
+
+Para verificar a EDP, calculam-se as derivadas
+
+\[
+    u_t
+    =
+    4(x-2t)e^{-(x-2t)^2}
+\]
+
+e
+
+\[
+    u_x
+    =
+    -2(x-2t)e^{-(x-2t)^2}.
+\]
+
+Logo,
+
+\[
+    u_t+2u_x
+    =
+    4(x-2t)e^{-(x-2t)^2}
+    -
+    4(x-2t)e^{-(x-2t)^2}
+    =
+    0.
+\]
+
+Portanto, a expressão satisfaz a EDP e a condição inicial.
+
+\subsection{Implementação da solução}
+
+No código, o perfil inicial é definido por
+
+\begin{lstlisting}[language=Python]
+def u0(x):
+    return np.exp(-x**2)
+\end{lstlisting}
+
+A solução é implementada por
+
+\begin{lstlisting}[language=Python]
+def u(x, t, c=2):
+    return u0(x - c * t)
+\end{lstlisting}
+
+O intervalo espacial $[-10,15]$ é dividido em mil pontos:
+
+\begin{lstlisting}[language=Python]
+x = np.linspace(-10, 15, 1000)
+\end{lstlisting}
+
+São considerados os instantes
+
+\[
+    t=0,\quad 1,\quad 2,\quad 3,\quad 4.
+\]
+
+Para cada instante, calcula-se e representa-se o perfil da solução:
+
+\begin{lstlisting}[language=Python]
+tempos = [0, 1, 2, 3, 4]
+
+for t in tempos:
+    plt.plot(x, u(x, t), label=f"t = {t}")
+\end{lstlisting}
+
+\subsection{Perfis da solução}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]
+    {03_solucao_questao2.png}
+    \caption{Solução da equação de transporte para diferentes valores de tempo}
+    \label{fig:lista3-questao2-perfis}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Na Figura~\ref{fig:lista3-questao2-perfis}, cada instante corresponde ao
+perfil
+
+\[
+    u(x,t)=e^{-(x-2t)^2}.
+\]
+
+O valor máximo da função ocorre quando
+
+\[
+    x-2t=0.
+\]
+
+Portanto, a posição do máximo é
+
+\[
+    x_{\mathrm{m}}=2t.
+\]
+
+O valor máximo permanece igual a
+
+\[
+    u_{\mathrm{m}}=1.
+\]
+
+A tabela resume o deslocamento do centro do perfil:
+
+\begin{table}[H]
+    \centering
+    \caption{Posição e valor máximo do perfil em diferentes instantes}
+    \label{tab:lista3-questao2-maximos}
+    \begin{tabular}{ccc}
+        \hline
+        $t$ & $x_{\mathrm{m}}=2t$ & $u_{\mathrm{m}}$ \\
+        \hline
+        0   & 0                   & 1                \\
+        1   & 2                   & 1                \\
+        2   & 4                   & 1                \\
+        3   & 6                   & 1                \\
+        4   & 8                   & 1                \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Mapa das características}
+
+No caso de velocidade constante $c=2$, as curvas características são dadas
+por
+
+\[
+    x=x_0+2t.
+\]
+
+Essas curvas podem ser representadas no plano formado pela posição $x$ e pelo
+tempo $t$.
+
+\begin{lstlisting}[language=Python]
+x0_valores = np.linspace(-8, 8, 17)
+t_caracteristicas = np.linspace(0, 5, 300)
+
+for x0 in x0_valores:
+    x_caracteristica = x0 + 2 * t_caracteristicas
+    plt.plot(
+        x_caracteristica,
+        t_caracteristicas
+    )
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]
+    {04_caracteristicas_questao2.png}
+    \caption{Curvas características para velocidade constante $c=2$}
+    \label{fig:lista3-questao2-caracteristicas}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Na Figura~\ref{fig:lista3-questao2-caracteristicas}, as características são
+retas paralelas porque todas possuem a mesma velocidade.
+
+Um ponto que inicia na posição $x_0$ segue a trajetória
+
+\[
+    x=x_0+2t.
+\]
+
+Ao longo dessa trajetória, o valor de $u$ permanece constante:
+
+\[
+    u(x_0+2t,t)=u_0(x_0).
+\]
+
+\subsection{Representação tridimensional}
+
+Para visualizar simultaneamente a dependência da solução em relação a $x$ e
+$t$, constrói-se uma malha:
+
+\begin{lstlisting}[language=Python]
+x_superficie = np.linspace(-10, 15, 300)
+t_superficie = np.linspace(0, 5, 200)
+
+X, T = np.meshgrid(x_superficie, t_superficie)
+U = u(X, T)
+\end{lstlisting}
+
+A superfície é construída por
+
+\begin{lstlisting}[language=Python]
+fig = plt.figure(figsize=(11, 7))
+ax = fig.add_subplot(111, projection="3d")
+
+superficie = ax.plot_surface(
+    X,
+    T,
+    U,
+    cmap="viridis"
+)
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]
+    {05_superficie_questao2.png}
+    \caption{Representação tridimensional da solução $u(x,t)$}
+    \label{fig:lista3-questao2-superficie}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+A Figura~\ref{fig:lista3-questao2-superficie} reúne a evolução temporal dos
+perfis. O eixo $x$ indica a posição, o eixo $t$ representa o tempo e o eixo
+vertical corresponde ao valor de $u(x,t)$.
+
+\subsection{Análise física}
+
+A equação
+
+\[
+    u_t+a(x,t)u_x=0
+\]
+
+representa o transporte de uma quantidade sem a presença de fontes,
+sumidouros ou termos difusivos.
+
+O coeficiente $a(x,t)$ determina a velocidade local de propagação. Como a
+equação é homogênea, o valor de $u$ não aumenta nem diminui ao longo de uma
+característica:
+
+\[
+    \frac{du}{dt}=0.
+\]
+
+Isso significa que as características transportam os valores do perfil
+inicial sem modificá-los diretamente.
+
+No caso particular em que
+
+\[
+    a(x,t)=c,
+\]
+
+a solução é
+
+\[
+    u(x,t)=u_0(x-ct).
+\]
+
+Nesse caso, o perfil inicial sofre apenas uma translação horizontal.
+
+Quando
+
+\[
+    c>0,
+\]
+
+a propagação ocorre da esquerda para a direita.
+
+Quando
+
+\[
+    c<0,
+\]
+
+a propagação ocorre da direita para a esquerda.
+
+Para o exemplo considerado,
+
+\[
+    c=2,
+\]
+
+o perfil desloca-se para a direita com velocidade constante igual a $2$.
+Após um intervalo de tempo $t$, o deslocamento é
+
+\[
+    \Delta x=2t.
+\]
+
+A amplitude máxima permanece igual a $1$, e a largura e a forma do perfil não
+são alteradas. Isso acontece porque todas as características possuem a mesma
+velocidade e permanecem paralelas.
+
+Consequentemente, no caso constante:
+
+\begin{enumerate}
+    \item o perfil desloca-se com velocidade constante;
+    \item a forma da onda permanece inalterada;
+    \item a amplitude permanece constante;
+    \item não ocorre dissipação;
+    \item não ocorre crescimento ou decaimento;
+    \item não ocorre cruzamento das características;
+    \item não ocorre formação de choques ou descontinuidades.
+\end{enumerate}
+
+No caso geral, em que $a=a(x,t)$, a velocidade pode variar entre diferentes
+pontos do domínio. Assim, as características podem deixar de ser retas e o
+perfil pode sofrer compressão ou expansão espacial.
+
+Entretanto, enquanto as características não se cruzarem, a solução continua
+sendo obtida transportando o dado inicial:
+
+\[
+    \boxed{
+        u(x,t)=u_0\left(X^{-1}(x,t)\right)
+    }.
+\]
+
+Em síntese, a equação descreve o transporte da informação inicial ao longo das
+curvas determinadas pela velocidade $a(x,t)$, mantendo constante o valor da
+solução sobre cada uma dessas trajetórias.
 
 \postextual
 \chapter*{Referências}

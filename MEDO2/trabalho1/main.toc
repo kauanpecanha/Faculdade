@@ -9,19 +9,26 @@
 \contentsline {subsection}{\numberline {1.2.3}Processo iterativo}{5}{subsection*.30}%
 \contentsline {subsection}{\numberline {1.2.4}Mapa de calor}{5}{subsection*.36}%
 \contentsline {chapter}{\chapternumberline {2}Lista 2 -- Questão 1}{7}{chapter*.55}%
-\contentsline {section}{\numberline {2.1}Item 1}{7}{section*.59}%
-\contentsline {section}{\numberline {2.2}Item 2}{7}{section*.60}%
-\contentsline {section}{\numberline {2.3}Item 3}{8}{section*.61}%
-\contentsline {chapter}{\chapternumberline {3}Lista 2 -- Questão 2}{9}{chapter*.62}%
-\contentsline {section}{\numberline {3.1}Item 1}{9}{section*.66}%
-\contentsline {section}{\numberline {3.2}Item 2}{9}{section*.67}%
-\contentsline {section}{\numberline {3.3}Item 3}{10}{section*.68}%
-\contentsline {chapter}{\chapternumberline {4}Lista 3 -- Questão 1}{11}{chapter*.69}%
-\contentsline {section}{\numberline {4.1}Enunciado}{11}{section*.70}%
-\contentsline {section}{\numberline {4.2}Solução}{11}{section*.74}%
-\contentsline {subsection}{\numberline {4.2.1}Implementação da solução}{13}{subsection*.75}%
-\contentsline {subsection}{\numberline {4.2.2}Perfis da solução}{13}{subsection*.86}%
-\contentsline {subsection}{\numberline {4.2.3}Representação tridimensional}{14}{subsection*.91}%
-\contentsline {subsection}{\numberline {4.2.4}Análise física}{15}{subsection*.110}%
+\contentsline {section}{\numberline {2.1}Enunciado}{7}{section*.56}%
+\contentsline {section}{\numberline {2.2}Item 1}{7}{section*.60}%
+\contentsline {section}{\numberline {2.3}Item 2}{7}{section*.61}%
+\contentsline {section}{\numberline {2.4}Item 3}{8}{section*.62}%
+\contentsline {chapter}{\chapternumberline {3}Lista 3 -- Questão 1}{9}{chapter*.63}%
+\contentsline {section}{\numberline {3.1}Enunciado}{9}{section*.64}%
+\contentsline {section}{\numberline {3.2}Solução}{9}{section*.68}%
+\contentsline {subsection}{\numberline {3.2.1}Implementação da solução}{11}{subsection*.69}%
+\contentsline {subsection}{\numberline {3.2.2}Perfis da solução}{11}{subsection*.80}%
+\contentsline {subsection}{\numberline {3.2.3}Representação tridimensional}{12}{subsection*.85}%
+\contentsline {subsection}{\numberline {3.2.4}Análise física}{13}{subsection*.104}%
+\contentsline {chapter}{\chapternumberline {4}Lista 3 -- Questão 2}{15}{chapter*.107}%
+\contentsline {section}{\numberline {4.1}Enunciado}{15}{section*.108}%
+\contentsline {section}{\numberline {4.2}Solução}{15}{section*.112}%
+\contentsline {subsection}{\numberline {4.2.1}Caso particular: velocidade constante}{17}{subsection*.113}%
+\contentsline {subsection}{\numberline {4.2.2}Exemplo utilizado na representação gráfica}{17}{subsection*.114}%
+\contentsline {subsection}{\numberline {4.2.3}Implementação da solução}{18}{subsection*.115}%
+\contentsline {subsection}{\numberline {4.2.4}Perfis da solução}{19}{subsection*.129}%
+\contentsline {subsection}{\numberline {4.2.5}Mapa das características}{20}{subsection*.134}%
+\contentsline {subsection}{\numberline {4.2.6}Representação tridimensional}{21}{subsection*.147}%
+\contentsline {subsection}{\numberline {4.2.7}Análise física}{22}{subsection*.166}%
 \vspace {\cftbeforepartskip }
-\contentsline {chapter}{REFERÊNCIAS}{17}{chapter*.115}%
+\contentsline {chapter}{REFERÊNCIAS}{25}{chapter*.176}%

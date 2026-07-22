@@ -1,5 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1784415611.61133 "main.tex" "main.pdf" "main" 1784415613.46761 0
+["pdflatex"] 1784676940.10336 "/home/kauan/code/Faculdade/MEDO2/trabalho1/main.tex" "main.pdf" "main" 1784676943.22423 0
+  "/home/kauan/code/Faculdade/MEDO2/trabalho1/main.tex" 1784676193.39215 28129 e466cf4d12b7a402d1fda7ddb7dc3233 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/courier/pcrr8c.tfm" 1136768653 1268 8bd405dc5751cfed76cb6fb2db78cb50 ""
@@ -34,6 +35,7 @@
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
@@ -152,13 +154,16 @@
   "/usr/local/texlive/2026/texmf.cnf" 1784408519.20168 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
   "figures/01_solucao_edp.png" 1784408877.6659 306512 84935e3c579efea44e72d4489fe889ba ""
   "figures/02_representacao_grafica.png" 1784408877.6779 953490 0f68551c4362b7275fe8ff3dcd01c714 ""
+  "figures/03_solucao_questao2.png" 1784676821.65601 232128 98fac1c5f4c842230fd4524956867dab ""
+  "figures/04_caracteristicas_questao2.png" 1784676821.96701 526709 27c72394af8cc395fbdad13a63f31ad0 ""
+  "figures/05_superficie_questao2.png" 1784676822.84801 825122 290072fc4f461559c5ba426ec90c9eec ""
   "figures/iprj.jpeg" 1784415031.61117 8926 c7a4bbf52ed91cb91b44dcffb0900e31 ""
   "figures/lista1-questao1.png" 1784408877.6839 11525 a6a1bdd5ad93b1ac9638941b11ee3c36 ""
   "figures/mapa_calor.png" 1784408877.6549 80676 c860d5b9c7106cf6a470b60fd13e4ba2 ""
   "figures/uerj.png" 1784415031.60717 10360 95b617c48da2133fcb05f8e85ab207b0 ""
-  "main.aux" 1784415613.36419 10229 74de616b6f3f95e8438fe32c8f409a99 "pdflatex"
-  "main.tex" 1784415602.62029 20450 06ba70375448b11794dac76149a814f8 ""
-  "main.toc" 1784415613.36919 1916 bfe2aa6b47e9f5e02292acd12620cd3a "pdflatex"
+  "main.aux" 1784676943.1543 15133 fe3eaaa9f0a5689ba082b282ba674719 "pdflatex"
+  "main.tex" 1784676193.39215 28129 e466cf4d12b7a402d1fda7ddb7dc3233 ""
+  "main.toc" 1784676943.1603 2617 49e6c57f14435d67b43cdc0cc688d7ba "pdflatex"
   (generated)
   "main.aux"
   "main.log"
