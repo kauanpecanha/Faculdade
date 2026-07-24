@@ -1443,12 +1443,165 @@ sendo obtida transportando o dado inicial:
 \[
     \boxed{
         u(x,t)=u_0\left(X^{-1}(x,t)\right)
-    }.
+    }
 \]
 
 Em síntese, a equação descreve o transporte da informação inicial ao longo das
 curvas determinadas pela velocidade $a(x,t)$, mantendo constante o valor da
 solução sobre cada uma dessas trajetórias.
+
+\newpage
+
+\chapter{Lista ? -- Questão ?}
+
+\section{Enunciado}
+
+Dado o seguinte Problema de Valor Inicial:
+
+\[
+    u_t + uu_x = 0, \qquad \forall x>0,
+\]
+
+\[
+    u(x,0)=u_0(x) = -2,
+    \qquad \forall x<=0,
+\]
+
+\[
+    u(x,0)=u_0(x) = 0,
+    \qquad \forall x>0,
+\]
+
+\begin{enumerate}
+    \item Determinar as curvas caracteristicas
+    \item Encontre o caminho do choque
+    \item Esboce o diagrama no plano $(x, t)$ e a solução $u(x, t)$
+\end{enumerate}
+
+\section{Solução}
+
+\subsection{Curvas caracteristicas}
+
+A equação pode ser escrita na forma de uma lei de conservação:
+
+\[
+    u_t+\left(\frac{u^2}{2}\right)_x=0,
+\]
+
+pois
+
+\[
+    f(u)=\frac{u^2}{2}
+    \qquad\text{e}\qquad
+    f'(u)=u.
+\]
+
+Ao longo de uma curva característica $x=x(t)$, tem-se
+
+\[
+    \frac{d}{dt}u(x(t),t)
+    =
+    u_t+x'(t)u_x.
+\]
+
+Escolhendo $x'(t)=u$, a equação fornece $du/dt=0$. Portanto, $u$
+permanece constante em cada característica e
+
+\[
+    x(t)=x_0+u_0(x_0)t.
+\]
+
+Para $x_0<0$, o valor transportado é $u=-2$, de modo que
+
+\[
+    \boxed{x(t)=x_0-2t,\qquad x_0<0.}
+\]
+
+Para $x_0>0$, o valor transportado é $u=0$, logo
+
+\[
+    \boxed{x(t)=x_0,\qquad x_0>0.}
+\]
+
+As características à esquerda deslocam-se com velocidade $-2$, enquanto as da
+direita são verticais no plano $(x,t)$. Assim, elas se afastam da origem,
+deixando entre $x=-2t$ e $x=0$ uma região que deve ser preenchida. Esse
+afastamento é o mecanismo que produz uma onda de rarefação.
+
+\subsection{Verificação do caminho de choque}
+
+Se os dois estados fossem ligados por uma descontinuidade, a condição de
+Rankine--Hugoniot daria a velocidade
+
+\[
+    s
+    =
+    \frac{f(u_R)-f(u_L)}{u_R-u_L}
+    =
+    \frac{0-2}{0-(-2)}
+    =
+    -1.
+\]
+
+\[
+    \boxed{x_s(t)=-t.}
+\]
+
+\subsection{Visualização gráfica da solução}
+
+A solução é autossimilar, ou seja, depende da razão
+$\xi=x/t$. Dentro do leque, procura-se $u(x,t)=U(\xi)$. Substituindo essa
+forma na equação, obtém-se
+
+\[
+    \left(U(\xi)-\xi\right)U'(\xi)=0.
+\]
+
+Na parte não constante da solução, $U'(\xi)\neq0$, portanto
+$U(\xi)=\xi$. Ligando os estados $u_L=-2$ e $u_R=0$, resulta
+
+\[
+    \boxed{
+    u(x,t)=
+    \begin{cases}
+        -2, & \dfrac{x}{t}\leq -2,\\[6pt]
+        \dfrac{x}{t}, & -2<\dfrac{x}{t}<0,\\[6pt]
+        0, & \dfrac{x}{t}\geq0,
+    \end{cases}
+    \qquad t>0.}
+\]
+
+Equivalentemente, as fronteiras do leque são $x=-2t$ e $x=0$. Entre elas,
+a solução cresce linearmente de $-2$ até $0$. O salto inicial não permanece
+como choque: ele se abre progressivamente, e a largura da zona de transição é
+$2t$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\linewidth]{06_caracteristicas_rarefacao.png}
+    \caption{Diagrama de características e leque de rarefação}
+    \label{fig:caracteristicas-rarefacao}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Na Figura~\ref{fig:caracteristicas-rarefacao}, as retas verdes que partem da
+origem preenchem o setor $-2t\leq x\leq0$. Cada uma delas possui inclinação
+$x/t=\xi$ e transporta o valor constante $u=\xi$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\linewidth]{07_perfis_rarefacao.png}
+    \caption{Perfis da solução entrópica em diferentes instantes}
+    \label{fig:perfis-rarefacao}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Como mostra a Figura~\ref{fig:perfis-rarefacao}, o estado $u=-2$ permanece à
+esquerda de $x=-2t$, e o estado $u=0$ permanece à direita de $x=0$. O leque
+se alarga com o tempo sem ultrapassar esses dois valores, caracterizando uma
+onda de rarefação.
 
 \postextual
 \chapter*{Referências}
