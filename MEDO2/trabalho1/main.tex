@@ -599,6 +599,76 @@ Pede-se:
 
 \section{Solução}
 
+\subsection{Solução analítica}
+
+Pelo método das características, toma-se uma curva $x=x(t)$ tal que
+
+\[
+    \frac{dx}{dt}=3.
+\]
+
+Se $x(0)=x_0$, então
+
+\[
+    x(t)=x_0+3t
+    \qquad\Longrightarrow\qquad
+    x_0=x-3t.
+\]
+
+Ao longo dessa característica, a EDP fornece
+
+\[
+    \frac{du}{dt}
+    =
+    u_t+\frac{dx}{dt}u_x
+    =
+    u_t+3u_x
+    =
+    1.
+\]
+
+Integrando e usando $u(x_0,0)=x_0^2$, obtém-se
+
+\[
+    u(x(t),t)=x_0^2+t.
+\]
+
+Portanto,
+
+\[
+    \boxed{u(x,t)=(x-3t)^2+t}.
+\]
+
+\subsection{Representação gráfica}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\linewidth]{01_solucao_edp.png}
+    \caption{Perfis de $u(x,t)$ em diferentes instantes}
+    \label{fig:lista3-q1-perfis-objetiva}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+Os gráficos são parábolas de mesma abertura. Em cada instante $t$, o vértice
+está em
+
+\[
+    (x_{\mathrm v},u_{\mathrm v})=(3t,t).
+\]
+
+Assim, o perfil inicial se desloca para a direita e, simultaneamente, é
+elevado pela fonte.
+
+\subsection{Análise física}
+
+O termo $3u_x$ transporta a onda para a direita com velocidade constante
+$3$, enquanto o termo-fonte unitário aumenta todos os valores de $u$ à taxa
+de uma unidade por unidade de tempo. Como as características
+$x=x_0+3t$ são retas paralelas, a forma da parábola é preservada e não há
+cruzamento de características nem formação de choques.
+
+\iffalse
 A equação tem a forma
 
 \[
@@ -878,6 +948,7 @@ Em síntese, há dois efeitos:
     \item deslocamento da parábola para a direita com velocidade $3$;
     \item elevação uniforme de uma unidade por unidade de tempo.
 \end{enumerate}
+\fi
 
 \newpage
 
@@ -913,6 +984,95 @@ Pede-se:
 
 \section{Solução}
 
+\subsection{Solução por características}
+
+Seja $X(t;x_0)$ a característica que parte de $x_0$, isto é,
+
+\[
+    X(0;x_0)=x_0,
+    \qquad
+    \frac{dX}{dt}=a(X(t;x_0),t).
+\]
+
+Pela regra da cadeia,
+
+\[
+    \frac{d}{dt}u(X(t;x_0),t)
+    =
+    u_t+\frac{dX}{dt}u_x
+    =
+    u_t+a(X(t;x_0),t)u_x
+    =
+    0.
+\]
+
+Logo, $u$ é constante em cada característica:
+
+\[
+    u(X(t;x_0),t)=u_0(x_0).
+\]
+
+Se o mapa $x_0\mapsto X(t;x_0)$ for invertível, o ponto inicial da
+característica que chega a $(x,t)$ é $x_0=X^{-1}(x,t)$. Portanto,
+
+\[
+    \boxed{u(x,t)=u_0\!\left(X^{-1}(x,t)\right)}.
+\]
+
+No caso particular $a(x,t)=c$, as características são
+
+\[
+    X(t;x_0)=x_0+ct,
+\]
+
+e a solução assume a forma
+
+\[
+    \boxed{u(x,t)=u_0(x-ct)}.
+\]
+
+\subsection{Representação gráfica}
+
+Como o enunciado não especifica $a(x,t)$ nem $u_0(x)$, não existe um único
+gráfico para o caso geral. Para representar o transporte, considera-se o
+exemplo $c=2$ e $u_0(x)=e^{-x^2}$, para o qual
+
+\[
+    u(x,t)=e^{-(x-2t)^2}.
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\linewidth]{03_solucao_questao2.png}
+    \caption{Perfis de $u(x,t)=e^{-(x-2t)^2}$ em diferentes instantes}
+    \label{fig:lista3-q2-perfis-objetiva}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\linewidth]{04_caracteristicas_questao2.png}
+    \caption{Características $x=x_0+2t$ do exemplo}
+    \label{fig:lista3-q2-caracteristicas-objetiva}
+
+    {\small Fonte: elaborado pelo autor.\par}
+\end{figure}
+
+\subsection{Análise física}
+
+A equação descreve o transporte do perfil inicial sem fonte e sem difusão:
+o valor de $u$ permanece constante ao longo de cada característica. Para
+velocidade constante, o perfil conserva forma e amplitude e apenas se
+desloca: para a direita se $c>0$ e para a esquerda se $c<0$. No exemplo,
+a onda se move para a direita com velocidade $2$, mantendo amplitude máxima
+igual a $1$.
+
+Quando $a$ depende de $x$ ou de $t$, as características podem ser curvas e o
+perfil pode sofrer compressão ou expansão. A expressão obtida permanece
+válida enquanto o mapa das características for invertível.
+
+\iffalse
 A equação considerada possui a forma
 
 \[
@@ -1449,10 +1609,11 @@ sendo obtida transportando o dado inicial:
 Em síntese, a equação descreve o transporte da informação inicial ao longo das
 curvas determinadas pela velocidade $a(x,t)$, mantendo constante o valor da
 solução sobre cada uma dessas trajetórias.
+\fi
 
 \newpage
 
-\chapter{Lista ? -- Questão ?}
+\chapter{Lista 4 -- Questão 6}
 
 \section{Enunciado}
 

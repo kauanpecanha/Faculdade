@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.18)  24 JUL 2026 19:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.18)  25 JUL 2026 19:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -858,7 +858,7 @@ Package pdftex.def Info: figures/iprj.jpeg  used on input line 95.
 
 ]
 Cap\'{\i }tulo 1.
-<figures/lista1-questao1.png, id=96, 399.4925pt x 235.88126pt>
+<figures/lista1-questao1.png, id=86, 399.4925pt x 235.88126pt>
 File: figures/lista1-questao1.png Graphic file (type png)
 <use figures/lista1-questao1.png>
 Package pdftex.def Info: figures/lista1-questao1.png  used on input line 173.
@@ -890,7 +890,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<figures/mapa_calor.png, id=142, 410.0118pt x 338.9463pt>
+<figures/mapa_calor.png, id=132, 410.0118pt x 338.9463pt>
 File: figures/mapa_calor.png Graphic file (type png)
 <use figures/mapa_calor.png>
 Package pdftex.def Info: figures/mapa_calor.png  used on input line 398.
@@ -901,59 +901,45 @@ Cap\'{\i }tulo 2.
 
 ] [8]
 Cap\'{\i }tulo 3.
-[9
-
-] [10]
-<figures/01_solucao_edp.png, id=202, 715.473pt x 425.6703pt>
+<figures/01_solucao_edp.png, id=180, 715.473pt x 425.6703pt>
 File: figures/01_solucao_edp.png Graphic file (type png)
 <use figures/01_solucao_edp.png>
-Package pdftex.def Info: figures/01_solucao_edp.png  used on input line 756.
-(pdftex.def)             Requested size: 386.75278pt x 230.09885pt.
- [11 <./figures/01_solucao_edp.png>]
-<figures/02_representacao_grafica.png, id=222, 575.0283pt x 497.6994pt>
-File: figures/02_representacao_grafica.png Graphic file (type png)
-<use figures/02_representacao_grafica.png>
-Package pdftex.def Info: figures/02_representacao_grafica.png  used on input line 835.
-(pdftex.def)             Requested size: 386.75278pt x 334.75548pt.
- [12] [13 <./figures/02_representacao_grafica.png>] [14]
-Cap\'{\i }tulo 4.
-[15
+Package pdftex.def Info: figures/01_solucao_edp.png  used on input line 646.
+(pdftex.def)             Requested size: 373.10333pt x 221.97336pt.
+[9
 
-] [16] [17] [18]
-<figures/03_solucao_questao2.png, id=287, 715.473pt x 425.6703pt>
-File: figures/03_solucao_questao2.png Graphic file (type png)
-<use figures/03_solucao_questao2.png>
-Package pdftex.def Info: figures/03_solucao_questao2.png  used on input line 1214.
-(pdftex.def)             Requested size: 386.75278pt x 230.09885pt.
- [19 <./figures/03_solucao_questao2.png>]
-<figures/04_caracteristicas_questao2.png, id=303, 715.473pt x 425.4294pt>
-File: figures/04_caracteristicas_questao2.png Graphic file (type png)
-<use figures/04_caracteristicas_questao2.png>
-Package pdftex.def Info: figures/04_caracteristicas_questao2.png  used on input line 1292.
-(pdftex.def)             Requested size: 386.75278pt x 229.96863pt.
- [20] [21 <./figures/04_caracteristicas_questao2.png>]
-<figures/05_superficie_questao2.png, id=339, 613.3314pt x 497.9403pt>
-File: figures/05_superficie_questao2.png Graphic file (type png)
-<use figures/05_superficie_questao2.png>
-Package pdftex.def Info: figures/05_superficie_questao2.png  used on input line 1344.
-(pdftex.def)             Requested size: 386.75278pt x 313.99277pt.
- [22 <./figures/05_superficie_questao2.png>] [23] [24]
-Cap\'{\i }tulo 5.
-[25
+] [10 <./figures/01_solucao_edp.png>]
+Cap\'{\i }tulo 4.
+[11
 
 ]
-<figures/06_caracteristicas_rarefacao.png, id=377, 643.203pt x 425.4294pt>
+<figures/03_solucao_questao2.png, id=204, 715.473pt x 425.6703pt>
+File: figures/03_solucao_questao2.png Graphic file (type png)
+<use figures/03_solucao_questao2.png>
+Package pdftex.def Info: figures/03_solucao_questao2.png  used on input line 1046.
+(pdftex.def)             Requested size: 373.10333pt x 221.97336pt.
+<figures/04_caracteristicas_questao2.png, id=205, 715.473pt x 425.4294pt>
+File: figures/04_caracteristicas_questao2.png Graphic file (type png)
+<use figures/04_caracteristicas_questao2.png>
+Package pdftex.def Info: figures/04_caracteristicas_questao2.png  used on input line 1055.
+(pdftex.def)             Requested size: 354.89944pt x 211.02637pt.
+ [12 <./figures/03_solucao_questao2.png> <./figures/04_caracteristicas_questao2.png>] [13]
+Cap\'{\i }tulo 5.
+[14
+
+]
+<figures/06_caracteristicas_rarefacao.png, id=228, 643.203pt x 425.4294pt>
 File: figures/06_caracteristicas_rarefacao.png Graphic file (type png)
 <use figures/06_caracteristicas_rarefacao.png>
-Package pdftex.def Info: figures/06_caracteristicas_rarefacao.png  used on input line 1581.
+Package pdftex.def Info: figures/06_caracteristicas_rarefacao.png  used on input line 1742.
 (pdftex.def)             Requested size: 354.89944pt x 234.7399pt.
- [26]
-<figures/07_perfis_rarefacao.png, id=383, 641.0349pt x 425.4294pt>
+ [15]
+<figures/07_perfis_rarefacao.png, id=234, 641.0349pt x 425.4294pt>
 File: figures/07_perfis_rarefacao.png Graphic file (type png)
 <use figures/07_perfis_rarefacao.png>
-Package pdftex.def Info: figures/07_perfis_rarefacao.png  used on input line 1594.
+Package pdftex.def Info: figures/07_perfis_rarefacao.png  used on input line 1755.
 (pdftex.def)             Requested size: 354.89944pt x 235.53186pt.
- [27 <./figures/06_caracteristicas_rarefacao.png> <./figures/07_perfis_rarefacao.png>] [28
+ [16 <./figures/06_caracteristicas_rarefacao.png> <./figures/07_perfis_rarefacao.png>] [17
 
 ]
 \tf@toc=\write4
@@ -966,18 +952,18 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 21058 strings out of 467168
- 331499 string characters out of 5409468
+ 20901 strings out of 467168
+ 328991 string characters out of 5409468
  1084144 words of memory out of 5000000
- 49699 multiletter control sequences out of 15000+600000
- 663638 words of font info for 151 fonts, out of 8000000 for 9000
+ 49637 multiletter control sequences out of 15000+600000
+ 663768 words of font info for 153 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,107p,1044b,2091s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,13n,107p,1044b,1459s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (30 pages, 3359606 bytes).
+Output written on main.pdf (19 pages, 1836415 bytes).
 PDF statistics:
- 619 PDF objects out of 1000 (max. 8388607)
- 534 compressed objects within 6 object streams
- 221 named destinations out of 1000 (max. 500000)
- 40288 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 435 PDF objects out of 1000 (max. 8388607)
+ 367 compressed objects within 4 object streams
+ 123 named destinations out of 1000 (max. 500000)
+ 40238 words of extra memory for PDF output out of 42996 (max. 10000000)
 
