@@ -1,6 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1785019052.38829 "/home/kauan/code/Faculdade/MEDO2/trabalho1/main.tex" "main.pdf" "main" 1785019054.97938 0
-  "/home/kauan/code/Faculdade/MEDO2/trabalho1/main.tex" 1785019049.40922 35323 27edc49b418bfb8e0e614351bbf79724 ""
+["pdflatex"] 1785161159.48361 "main.tex" "main.pdf" "main" 1785161162.48352 0
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/courier/pcrr8c.tfm" 1136768653 1268 8bd405dc5751cfed76cb6fb2db78cb50 ""
@@ -161,9 +160,9 @@
   "figures/lista1-questao1.png" 1784408877.6839 11525 a6a1bdd5ad93b1ac9638941b11ee3c36 ""
   "figures/mapa_calor.png" 1784408877.6549 80676 c860d5b9c7106cf6a470b60fd13e4ba2 ""
   "figures/uerj.png" 1784415031.60717 10360 95b617c48da2133fcb05f8e85ab207b0 ""
-  "main.aux" 1785019054.91919 14255 902efb06db1f69378028be51335b745b "pdflatex"
-  "main.tex" 1785019049.40922 35323 27edc49b418bfb8e0e614351bbf79724 ""
-  "main.toc" 1785019054.92419 2623 7b3bf36c6026e050cfa4ca9d898c4ed9 "pdflatex"
+  "main.aux" 1785161162.39101 14574 a923df8de4f7869a5143efbadeb86120 "pdflatex"
+  "main.tex" 1785161155.97387 36401 9202cd1e8a1595dd63fc2ed8e178a345 ""
+  "main.toc" 1785161162.39802 2683 57d6b0e5ea655891a3bf4904fffacbf7 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
